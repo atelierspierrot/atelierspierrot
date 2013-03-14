@@ -11,11 +11,3 @@
 Thumbs.db
 ehthumbs.db
 Icon
-
-# Specifics
-composer.lock
-cache/*
-phpdoc/*
-vendor/*
-tmp/*
-dev/*

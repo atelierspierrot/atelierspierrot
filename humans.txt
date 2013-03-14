@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Piero Wbmstr -- lead developer -- piero.wbmstr@gmail.com -- https://github.com/PieroWbmstr
+
+# THANKS
+
+    Anyone who make some open-source stuff!
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Bootstrap, jQuery, HTML5shiv
+    And much more ...
