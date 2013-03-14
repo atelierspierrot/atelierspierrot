@@ -25,15 +25,15 @@ the classes but define the `use` statement in your scripts.
 
 A common architecture for one of our PHP packages should be something like:
 
-   | composer.json
-   | sami.config.php
-   | README.md
-   | src/
-   | ---- package-namespace/
-   | ---------------------- class-name.php
-   | bin/
-   | ------ binary-script.php
-   | phpdoc/
+    | composer.json
+    | sami.config.php
+    | README.md
+    | src/
+    | ---- package-namespace/
+    | ---------------------- class-name.php
+    | bin/
+    | ------ binary-script.php
+    | phpdoc/
 
 
 ----
