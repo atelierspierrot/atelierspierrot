@@ -3,6 +3,20 @@ Les Ateliers Pierrot
 
 This repository contains various documentations & informations about our work as Markdown files.
 
+For more informations, here are some useful links of our web universe:
+
+-   <http://www.ateliers-pierrot.fr/>: our homepage (in construction for now),
+-   <https://github.com/aterlierspierrot>: our [GitHub](http://www.github.com/) profile,
+-   <https://packagist.org/packages/atelierspierrot/>: our [Packagist](https://packagist.org/) profile,
+-   <http://trac.ateliers-pierrot.fr/>: our own sources tracker (using [InDefero](http://www.indefero.net/)),
+-   <http://projects.ateliers-pierrot.fr/>: some demonstrations of our projects,
+-   <http://www.ateliers-pierrot.fr/sites/>: some clones of our repositories,
+-   <http://docs.ateliers-pierrot.fr/>: our packages documentations.
+
+If you have a user access, here are our restricted websites:
+
+-   <http://stats.ateliers-pierrot.fr/>: our frequentation tracker (using [Piwik](http://piwik.org/))
+
 
 ----
 **Copyleft (c) 2008-2013 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.
