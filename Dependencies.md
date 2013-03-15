@@ -5,13 +5,17 @@ This document explain the different tools we usually use to install/update depen
 our packages.
 
 
-## Composer: PHP dependencies manager
+Composer: PHP dependencies manager
+----------------------------------
 
 We use [Composer](http://getcomposer.org/) to automatically install/update the required 
 external PHP packages our own packages are based on.
 
+Some of our packages are registered in the [Packagist](https://packagist.org/packages/atelierspierrot/).
 
-## Sami: the new documentation generator
+
+Sami: the new documentation generator
+-------------------------------------
 
 In the past we often used [PHP Documentor](http://www.phpdoc.org/) to generate a 
 documentation of our scripts.
@@ -25,11 +29,14 @@ a documentation can be generated running:
     ~$ php path/to/vendor/sami/sami/sami.php render sami.config.php
 
 The HTML documentation is generated in a `phpdoc/` directory that is NOT under version-control.
-Sami requires two temporary directories for this generation that are set, by default, to
+Sami requires temporary directories for this generation that are set, by default, to
 the `__DIR__.'/../tmp/'` directory outside of the GIT clone:
 
-    'build_dir' => __DIR__.'/../tmp/build/NAMEOFPACKAGE'
+    'build_dir' => __DIR__.'/phpdoc'
     'cache_dir' => __DIR__.'/../tmp/cache/NAMEOFPACKAGE'
+
+The latest version of the `master` branch's documentation is available online for all of
+our packages at <http://docs.ateliers-pierrot.fr>.
 
 
 ----
