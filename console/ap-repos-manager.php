@@ -50,11 +50,9 @@ function writeHelp()
     write();
     writeBold('Basic options');
     writeList(array(
-        'h' => 'get help (the current info)',
-        'i=mask' => 'the mask used to build to URL to get repositories infos (will be completed with `@webhost@`, `@username@`, `@usertype@`)',
-        'p=path' => 'path to your local clones directory, absolute path or relative to `cwd` (default is `.`)',
-        'm=mask' => 'filter the repositories that match the given mask (you must surround mask between double-quotes and use PCRE valid expressions)',
-        'a=action' => 'which action to launch, with action in:',
+        'p=path' => 'path to your local clones directory, absolute path or relative to `cwd` (default is `.`, the current directory)',
+        'm=mask' => 'filter the repositories that match the given mask (you must surround mask between double-quotes and may use PCRE valid expressions)',
+        'a=action' => 'which action to process in:',
         '  l' => '    list concerned available repositories from the host',
         '  s' => '    get the git status for local clones of all concerned repositories',
         '  c' => '    create a local clone of all concerned repositories',
@@ -66,8 +64,9 @@ function writeHelp()
     writeBold('Hosting options');
     writeList(array(
         'w=webhost' => 'the base URL of the web host (default is `https://api.github.com/`)',
-        'u=username' => 'the username in the host',
-        't=usertype' => 'the type of user for username in the host (`user` or `org` for the default GitHub host)',
+        'u=username' => 'the username in the host system',
+        't=usertype' => 'the type of user in the host system (`user` or `org` for the default GitHub host)',
+        'i=mask' => 'the mask used to build webhost URL ; will be completed with `@webhost@`, `@username@`, `@usertype@` ; use with caution as this script is built to work with the GitHub API',
     ), '    %s    %s');
     write();
     writeBold('Examples');
