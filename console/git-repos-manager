@@ -5,22 +5,35 @@
  * <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
  * License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
  * Sources <https://github.com/atelierspierrot/atelierspierrot>
+ *
+ * console/git-repos-manager
  * 
  * Create/Read/Update/Delete some/all AteliersPierrot GitHub clones
  * 
  * For more infos run:
  * 
- *     ~$ php path/to/ap-repos-manager.php -h
+ *     ~$ php path/to/git-repos-manager -h
  * 
  */
 @ini_set('display_errors','1'); @error_reporting(E_ALL ^ E_NOTICE);
-if (php_sapi_name()!='cli') {
-    die('Command line usage only: run `~$ php ap-repos-manager.php -h` for more infos.');
-}
 
-define('_AP_MANAGER_VERSION', '1.0.0');
-define('_AP_MANAGER_NAME', 'GIT repositories manager for GitHub users');
-define('_AP_MANAGER_AUTHOR', 'Les Ateliers Pierrot <www.ateliers-pierrot.fr>');
+define('_AP_SCRIPT_VERSION', '1.0.0');
+define('_AP_SCRIPT_NAME', 'GIT repositories manager for GitHub users');
+define('_AP_SCRIPT_AUTHOR', 'Les Ateliers Pierrot <www.ateliers-pierrot.fr>');
+define('_AP_SCRIPT_FILENAME', basename(__FILE__));
+define('_AP_SCRIPT_DIR', __DIR__);
+define('_AP_CONSOLE_LIBRARY', __DIR__.'/console_lib.php');
+
+// -------------------
+// requirements
+// -------------------
+
+if (@file_exists(_AP_CONSOLE_LIBRARY)) {
+    include_once _AP_CONSOLE_LIBRARY;
+} else {
+    die('The library "console_lib.php" is required in the same directory as this script!'."\n");
+}
+cliOnly();
 
 // -------------------
 // defaults
@@ -39,14 +52,13 @@ $hosturl = '@webhost@/@usertype@/@username@/repos';
 
 function writeHelp()
 {
-    $file = basename(__FILE__);
     write();
     writeBold('Presentation');
     write('  Shell script to manage a local collection of GIT repositories from a webhost. Allowing to list distant repositories, create the collection clones, read the local collection informations, update the collection clones, delete the local clones and get the GIT status for each of them. You can specify a PCRE mask to filter working repositories list and define the local working path.');
     write('  (cURL and GIT binaries are required)');
     write();
     writeBold('Usage');
-    write('    ~$ '.getBold('php '.$file.' -[option[=value]]'));
+    write('    ~$ '.getBold('php '._AP_SCRIPT_FILENAME.' -[option[=value]]'));
     write();
     writeBold('Basic options');
     writeList(array(
@@ -71,99 +83,12 @@ function writeHelp()
     write();
     writeBold('Examples');
     write(' - to list all available "CarteBlanche" repositories, run
-    ~$ php ap-repos-manager.php -a=l -m="carte-blanche*"
+    ~$ php '._AP_SCRIPT_FILENAME.' -a=l -m="carte-blanche*"
 
  - to create a clone of all bundles in the current directory, run
-    ~$ php ap-repos-manager.php -a=c -m="bundle"
+    ~$ php '._AP_SCRIPT_FILENAME.' -a=c -m="bundle"
     
 The best practice is to begin listing the repositories to be sure your filters are good and then process an action upon them.');
-}
-
-set_error_handler("errorHandler");
-function errorHandler($errno, $errstr, $errfile, $errline)
-{
-    write();
-    writeBold('!! - '.$errstr);
-    writeError("    Error sent in file [$errfile] at line [$errline]\n    For more infos, run:\n        ~$ php path/to/ap-repos-manager.php -h\n");
-}
-
-function writeError($string, $status = 1)
-{
-    fwrite(STDERR, $string."\n");
-    exit($status);
-}
-
-function write($string = '')
-{
-    fwrite(STDOUT,$string."\n");
-}
-
-function writePrompt($string, $default = null)
-{
-    fwrite(STDOUT,$string.(!empty($default) ? ' ['.$default.']' : '')." ? ");
-}
-
-function writeBold($string)
-{
-    fwrite(STDOUT, getBold($string)."\n");
-}
-
-function getBold($string)
-{
-    return "\033[1m".$string."\033[0m";
-}
-
-function writeTitle()
-{
-    writeBold('## '.basename(__FILE__).' - '._AP_MANAGER_NAME.' ##');
-    write('(v. '.getBold(_AP_MANAGER_VERSION).' - by '._AP_MANAGER_AUTHOR.')');
-}
-
-function writeList($list, $mask = '  %s : %s')
-{
-    $indexlgt = 0;
-    foreach($list as $key=>$value) {
-        if (is_string($key) && strlen($key)>$indexlgt) {
-            $indexlgt = strlen($key);
-        }
-    }
-    foreach($list as $left=>$right) {
-        if (''==trim($right) && (!is_string($left) || ''==trim($left))) {
-            write();
-        } else {
-            write(sprintf(
-                $mask, str_pad((is_string($left) ? $left : ''), $indexlgt), $right
-            ));
-        }
-    }
-}
-
-function cls()
-{
-    system("clear");
-}
-
-function getInput()
-{
-    $line = fgets(STDIN);
-    return trim($line);
-}
-
-function execCommand($cmd = null, $relpath = null, $silent = false)
-{
-    $here = getcwd();
-    if (!is_null($relpath)) {
-        $cmd = 'cd '.$relpath.' && '.$cmd;
-    }
-    if (!$silent) {
-        write('-- cmd: '.$cmd);
-        $return = system($cmd);
-    } else {
-        $ok = exec($cmd, $return);
-        $return = implode("\n", $return);
-    }
-    exec('cd '.$here);
-    return $return;
 }
 
 function execGitCommand($cmd = 'checkout', $relpath = null, $silent = false)
@@ -431,6 +356,10 @@ exit('yo');
             break;
     }
 }
+
+// -------------------
+// script execution
+// -------------------
 
 // arguments
 $args = array(
