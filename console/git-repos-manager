@@ -54,8 +54,8 @@ function writeHelp()
 {
     write();
     writeBold('Presentation');
-    write('  Shell script to manage a local collection of GIT repositories from a webhost. Allowing to list distant repositories, create the collection clones, read the local collection informations, update the collection clones, delete the local clones and get the GIT status for each of them. You can specify a PCRE mask to filter working repositories list and define the local working path.');
-    write('  (cURL and GIT binaries are required)');
+    write('    Shell script to manage a local collection of GIT repositories from a webhost. Allowing to list distant repositories, create the collection clones, read the local collection informations, update the collection clones, delete the local clones and get the GIT status for each of them. You can specify a PCRE mask to filter working repositories list and define the local working path.');
+    write('    (cURL and GIT binaries are required)');
     write();
     writeBold('Usage');
     write('    ~$ '.getBold('php '._AP_SCRIPT_FILENAME.' -[option[=value]]'));
@@ -89,13 +89,6 @@ function writeHelp()
     ~$ php '._AP_SCRIPT_FILENAME.' -a=c -m="bundle"
     
 The best practice is to begin listing the repositories to be sure your filters are good and then process an action upon them.');
-}
-
-function execGitCommand($cmd = 'checkout', $relpath = null, $silent = false)
-{
-    $git_bin = exec('which git');
-    $git_cmd = sprintf('%s %s', $git_bin, $cmd);
-    return execCommand($git_cmd, $relpath, $silent);
 }
 
 function getRepoUrl()
@@ -137,42 +130,27 @@ function getLocalRepoInfos($path)
 {
     $repo = new StdClass;
     $repo->path = $path;
+
     // branches
-    $branches = execGitCommand('branch', $path, true);
-    $branches_list = explode("\n", $branches);
-    $repo->branch = array();
-    foreach($branches_list as $k=>$branch) {
-        $branchname = str_replace(array('*', ' '), '', $branch);
-        $repo->branch[] = $branchname;
-        if ($branch[0]=='*') {
-            $repo->current_branch = $branchname;
-        }
-    }
+    $repo->branch = getGitBranches($path);
+    $repo->current_branch = getGitCurrentBranch($path);
+
     // origins
     $origins = execGitCommand('remote -v', $path, true);
     $origins_list = explode("\n", $origins);
     foreach($origins_list as $k=>$origin) {
-        list($trash, $remote_info) = explode("\t", $origin);
-        $remote_parts = explode(' ', $remote_info);
-        if ($remote_parts[1]==='(fetch)') {
-            $repo->origin = $remote_parts[0];
+        if (!empty($origin)) {
+            list($trash, $remote_info) = explode("\t", $origin);
+            $remote_parts = explode(' ', $remote_info);
+            if (count($remote_parts)>1 && isset($remote_parts[1]) && $remote_parts[1]==='(fetch)') {
+                $repo->origin = $remote_parts[0];
+            }
         }
     }
     // last commit infos
-    $pretty_format = 'commit-abbrev:%h%nauthor_name:%an%nauthor_email:%ae%ndate:%ai%ntitle:%s%nmessage:%b%n';
-    $infos = execGitCommand('log -1 --pretty=format:'.$pretty_format, $path, true);
-    $infos_list = explode("\n", $infos);
-    $repo->last_commit = array();
-    foreach($infos_list as $k=>$infostr) {
-        $ok_match = preg_match('/^([a-z-_]+):(.*)$/i', $infostr, $matches);
-        if ($ok_match!==0) {
-            $last_index = $matches[1];
-            $repo->last_commit[$matches[1]] = $matches[2];
-        } else {
-            if (!isset($last_index)) $last_index = 'info';
-            $repo->last_commit[$last_index] .= $infostr;
-        }
-    }
+    $commits = getCommitsHistory($path, '-1');
+    $repo->last_commit = $commits[0];
+
     return $repo;
 /*
 var_export($repo);
@@ -207,7 +185,7 @@ function runAction($type)
         case 'u': case 'update': $action = 'update'; break;
         case 'd': case 'delete': $action = 'delete'; break;
         case 's': case 'status': $action = 'status'; break;
-        default: break;
+        default: $action = $type; break;
     }
 }
 
@@ -249,7 +227,7 @@ exit('yo');
             if (file_exists($path)) {
                 $data = array();
                 foreach(scandir($path) as $key=>$subdir) {
-                    if (!in_array($subdir, array('.', '..')) && (
+                    if (!in_array($subdir, array('.', '..')) && is_dir($subdir) && (
                         empty($mask) || (
                             !empty($mask) && 0!=preg_match('/'.$mask.'/i', $subdir)
                     ))) {

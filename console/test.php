@@ -17,11 +17,9 @@
  */
 @ini_set('display_errors','1'); @error_reporting(E_ALL ^ E_NOTICE);
 
-define('_AP_SCRIPT_VERSION', '1.0.0');
-define('_AP_SCRIPT_NAME', 'Recursive directory cleaner');
-define('_AP_SCRIPT_AUTHOR', 'Les Ateliers Pierrot <www.ateliers-pierrot.fr>');
+define('_AP_SCRIPT_VERSION', 'wip');
+define('_AP_SCRIPT_NAME', 'CLI terminal & library tester');
 define('_AP_SCRIPT_FILENAME', basename(__FILE__));
-define('_AP_SCRIPT_DIR', __DIR__);
 define('_AP_CONSOLE_LIBRARY', __DIR__.'/console_lib.php');
 
 // -------------------
@@ -39,12 +37,8 @@ cliOnly();
 // defaults
 // -------------------
 
-global $files_collection, $path, $dry;
-$files_collection = array(
-    '._*', '.DS_Store', '*~', 'Thumbs.db', 'ehthumbs.db', 'Icon'
-);
+global $path;
 $path='.';
-$dry=false;
 
 // -------------------
 // library
@@ -52,23 +46,18 @@ $dry=false;
 
 function writeHelp()
 {
-    global $files_collection;
     write();
     writeBold('Presentation');
-    write('    Shell script to delete a collection of specific operating systems or software internal files in a directory content and its sub-directories.');
+    write('    Shell script to test your terminal and the distributed PHP console library "console_lib.php".');
     write();
     writeBold('Usage');
     write('    ~$ '.getBold('php '._AP_SCRIPT_FILENAME.' -[option[=value]]'));
     write();
-    writeBold('Basic options');
+    writeBold('Options');
     writeList(array(
         'p=path' => 'path to the working root directory, absolute path or relative to `cwd` (default is `.`, the current directory)',
-        'c="coll ection"' => 'the collection of filenames masks to delete (space separated, you must surround your list between double-quotes)',
-        'd'=>'dry run: writes the list of matched files but doesn\'t execute the deletions',
+        'c' => 'test the colorization of texts with your console',
     ), '    %s    %s');
-    write();
-    writeBold('Default files list');
-    write('    '.implode('    ', $files_collection));
     write();
 }
 
@@ -83,68 +72,19 @@ function runHelp()
     exit(0);
 }
 
-function runCollection($collection)
+function runColor()
 {
-    global $files_collection;
-    $files_collection = explode(' ', $collection);
-    array_filter($files_collection);
-}
-
-function runDry()
-{
-    global $dry;
-    $dry = true;
-}
-
-function runPath($_path)
-{
-    global $path;
-    $path = $_path;
+    write(
+        'test of '
+        .getForegroundColored('colored text', 'red')
+        .' and '
+        .getBackgroundColored('backgrounded span', 'green')
+    );
 }
 
 function run()
 {
-    global $path;
-    if (file_exists($path)) {
-        runOnDirectory($path);
-    } else {
-        trigger_error(sprintf('Directory "%s" not found!', $path), E_USER_ERROR);
-    }
-}
 
-function runOnDirectory($path)
-{
-    if (file_exists($path)) {
-        foreach(scandir($path) as $key=>$subdir) {
-            if (!in_array($subdir, array('.', '..'))) {
-                $herepath = rtrim($path, '/').'/'.$subdir;
-                if (is_dir($herepath)) {
-                    runOnDirectory($herepath);
-                } else {
-                    runOnFile($herepath);
-                }
-            }
-        }
-    }
-}
-
-function runOnFile($path)
-{
-    global $files_collection, $dry;
-    if (file_exists($path)) {
-        foreach($files_collection as $mask) {
-            $mask = str_replace('*', '(.*)', $mask);
-            $ok_match = preg_match('/^'.$mask.'$/i', basename($path));
-            if (0!==$ok_match) {
-                $cmd = 'rm -f '.$path;
-                if (false===$dry) {
-                    execCommand($cmd);
-                } else {
-                    write('-- '.$cmd);
-                }
-            }
-        }
-    }
 }
 
 // -------------------
@@ -154,9 +94,8 @@ function runOnFile($path)
 // arguments
 $args = array(
     'h'=>'help',
-    'c:'=>'collection',
+    'c'=>'color',
     'p:'=>'path',
-    'd'=>'dry',
 );
 $options = getopt( implode('', array_keys($args)) );
 
