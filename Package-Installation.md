@@ -1,7 +1,7 @@
 Package Installation
 =============
 
-This document explain how to install one of our packages, include it in your work and
+This document explains how to install one of our packages, include it in your work and
 use it in your code.
 
 

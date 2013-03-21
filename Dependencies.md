@@ -1,7 +1,7 @@
 Dependencies
 =============
 
-This document explain the different tools we usually use to install/update dependencies in 
+This document explains the different tools we usually use to install/update dependencies in 
 our packages.
 
 

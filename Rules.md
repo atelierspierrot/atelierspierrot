@@ -1,7 +1,7 @@
 Rules
 =============
 
-This document explain the coding, storing and naming rules we use in our packages.
+This document explains the coding, storing and naming rules we use in our packages.
 
 
 ## Coding standards & naming rules

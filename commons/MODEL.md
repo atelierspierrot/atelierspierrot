@@ -1,7 +1,7 @@
 Title
 =======
 
-This document explain ...
+This document explains ...
 
 
 Section

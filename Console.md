@@ -1,7 +1,7 @@
 Console
 =======
 
-This document explain the different console scripts distributed with this repository.
+This document explains the different console scripts distributed with this repository.
 Related scripts are in `console/` directory.
 
 
@@ -14,9 +14,14 @@ To use one of the scripts, open a command line terminal and run:
     
 You can first try the `-h` option as argument to get help on the script.
 
-### Note
+If you have a terminal error or if the script doesn't seem to work, render it an
+executable file running:
 
-All the scripts are based on the `console_lib.php` library file present
+    ~$ chmod +x path/to/repo/console/name-of-script
+
+and run your command again.
+
+**Note** - All the scripts are based on the `console_lib.php` library file present 
 in the `console/` directory ; if you copy one of these scripts and paste
 it in a new path, you will need to do so (*once*) with the library. If
 the library seems to be missing, an error will be prompted.
@@ -82,28 +87,30 @@ This section is just a copy of the man for each script.
 
     Presentation
         Shell script to generate a changelog file info of a GIT repository in a BSD style.
-    
+
     Usage
         ~$ php changelog-builder -[option[=value]] -g
-    
+
     Options
         g             "GO": process the changelog generation ; option required (!)
         p=path        path to the working root directory, absolute path or relative to `cwd` (default is `.`, the current directory)
         f=filename    the filename of the generated changelog (default is `ChangeLog`)
         b=filename    the filename used to backup an existing changelog file (default is `ChangeLog.bak`)
         o             output: writes the changelog on screen instead of writing the file
-    
+        m=mode        the mode to use on an existing changelog file (`append`: add at the end, `prepend`: add at the beginning, `replace`: default)
+        t=title       the title of the changelog (by default, the last tag name will be the title, or the current branch)
+
     Changelog string style
-    
+
             Last tag found / GENERATION-DATE
             ================================
-            
+        
             2013-03-20
-            
+        
               * Commit title
                 Author name <author@email> | full iso date | commit abbreviated hash
                   Commit message if so ...
-            
+        
               * ...
     
 
