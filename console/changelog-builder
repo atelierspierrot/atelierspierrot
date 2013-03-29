@@ -190,12 +190,16 @@ function run()
                 foreach(array_keys($organized_by_date) as $date) {
                     $changelog_str .= "\n".$date."\n";
                     foreach($organized_by_date[$date] as $commit) {
-                        $changelog_str .= "\n".'  * '.$commit['title'];
+                        $changelog_str .= "\n".'  * '.wordwrap($commit['title'], 80, "\n    ");
                         $changelog_str .= "\n".'    '.$commit['author_name'].' <'.$commit['author_email'].'> | '.$commit['date'].' | '.$commit['commit-abbrev'];
-                        $message = $commit['message'];
-                        $message = trim($message);
                         if (!empty($commit['message'])) {
-                            $changelog_str .= "\n".'      '.wordwrap($commit['message'], 80, "\n      ");
+                            if (is_array($commit['message'])) {
+                                foreach ($commit['message'] as $msg_line) {
+                                    $changelog_str .= "\n".'      '.wordwrap(trim($msg_line), 80, "\n      ");
+                                }
+                            } else {
+                                $changelog_str .= "\n".'      '.wordwrap(trim($commit['message']), 80, "\n      ");
+                            }
                         }
                         $changelog_str .= "\n";
                     }

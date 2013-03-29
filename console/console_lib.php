@@ -366,8 +366,24 @@ function getCommitsHistory($path, $limit = false, $since = null, $until = null)
                     $changelog_entry[$matches[1]] = $matches[2];
                 } else {
                     if (!isset($last_index)) $last_index = 'info';
-                    if (!isset($changelog_entry[$last_index])) $changelog_entry[$last_index] = '';
-                    $changelog_entry[$last_index] .= ' '.$infostr;
+                    if (isset($changelog_entry[$last_index])) {
+                        if (!is_array($changelog_entry[$last_index])) {
+                            $changelog_entry[$last_index] = array($changelog_entry[$last_index]);
+                        }
+                    } else {
+                        $changelog_entry[$last_index] = array();
+                    }
+                    $changelog_entry[$last_index][] = $infostr;
+                }
+            }
+            foreach($changelog_entry as $k=>$v) {
+                if (is_array($v)) {
+                    $l = trim(end($v));
+                    while(count($v)>0 && true===empty($l)) {
+                        array_pop($v);
+                        $l = trim(end($v));
+                    }
+                    $changelog_entry[$k] = $v;
                 }
             }
             if (!empty($changelog_entry)) {
