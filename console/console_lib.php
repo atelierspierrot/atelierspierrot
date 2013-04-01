@@ -329,73 +329,164 @@ if (!function_exists('getGitCurrentBranch')) {
     }
 }
 
-function getGitNearestTag($path)
-{
-    $refs = rtrim($path, '/').'/.git/refs/tags';
-    if (file_exists($refs) && count(scandir($refs))>2) {
-        $result = execGitCommand('describe --tags --abbrev=0', $path, true);
-        if ('fatal'===substr($result, 0, strlen('fatal'))) {
-            return false;
+if (!function_exists('getGitNearestTag')) {
+    function getGitNearestTag($path)
+    {
+        $refs = rtrim($path, '/').'/.git/refs/tags';
+        if (file_exists($refs) && count(scandir($refs))>2) {
+            $result = execGitCommand('describe --tags --abbrev=0', $path, true);
+            if ('fatal'===substr($result, 0, strlen('fatal'))) {
+                return false;
+            }
+            return $result;
+        }
+        return false;
+    }
+}
+
+if (!function_exists('getCommitsHistory')) {
+    function getCommitsHistory($path, $limit = false, $since = null, $until = null)
+    {
+        $pretty_format = '----%ncommit-abbrev:%h%nauthor_name:%an%nauthor_email:%ae%ndate:%ai%ntitle:%s%nmessage:%b%n';
+        $added = '';
+        if (!empty($since) || !empty($until)) {
+            if (empty($since)) {
+                $last_commit = getCommitsHistory($path, '-1');
+                $since = $last_commit[0]['commit-abbrev'];
+            }
+            $added = $since.'..'.$until;
+        }
+        $history_cmd = 'log '.(!empty($limit) ? $limit.' ' : '').$added.' --format="'.$pretty_format.'"';
+        $history = execGitCommand('--no-pager '.$history_cmd, $path, true);
+        $changelog = array();
+
+        $commits_list = explode("----\n", $history);
+        foreach($commits_list as $k=>$commit) {
+            $changelog_entry = array();
+            $last_index = null;
+            $commit_infos = explode("\n", $commit);
+            if (count($commit_infos)>1 && !empty($commit_infos)) {
+                foreach($commit_infos as $k=>$infostr) {
+                    $ok_match = preg_match('/^([a-z-_]+):(.*)$/i', $infostr, $matches);
+                    if ($ok_match!==0) {
+                        $last_index = $matches[1];
+                        $changelog_entry[$matches[1]] = $matches[2];
+                    } else {
+                        if (!isset($last_index)) $last_index = 'info';
+                        if (isset($changelog_entry[$last_index])) {
+                            if (!is_array($changelog_entry[$last_index])) {
+                                $changelog_entry[$last_index] = array($changelog_entry[$last_index]);
+                            }
+                        } else {
+                            $changelog_entry[$last_index] = array();
+                        }
+                        $changelog_entry[$last_index][] = $infostr;
+                    }
+                }
+                foreach($changelog_entry as $k=>$v) {
+                    if (is_array($v)) {
+                        $l = trim(end($v));
+                        while(count($v)>0 && true===empty($l)) {
+                            array_pop($v);
+                            $l = trim(end($v));
+                        }
+                        $changelog_entry[$k] = $v;
+                    }
+                }
+                if (!empty($changelog_entry)) {
+                    $changelog[] = $changelog_entry;
+                }
+            }
+        }
+        return $changelog;     
+    }
+}
+
+// ----------------
+// Composer utilities
+// ----------------
+
+if (!function_exists('execComposerCommand')) {
+    function execComposerCommand($cmd = 'show -s', $relpath = null, $silent = false)
+    {
+        $composer_bin = exec('which composer');
+        $composer_cmd = sprintf('%s %s', $composer_bin, $cmd);
+        return execCommand($composer_cmd, $relpath, $silent);
+    }
+}
+
+if (!function_exists('isComposerPackage')) {
+    function isComposerPackage($path)
+    {
+        return (file_exists($path) && file_exists(rtrim($path, '/').'/composer.json'));
+    }
+}
+
+if (!function_exists('getComposerLocalPackageInfos')) {
+    function getComposerLocalPackageInfos($filepath)
+    {
+        if (file_exists($filepath)) {
+            return json_decode(file_get_contents($filepath), true);
+        }
+        return false;
+    }
+}
+
+if (!function_exists('getComposerPackageInfos')) {
+    function getComposerPackageInfos($package_name)
+    {
+        $labels = array('autoload', 'requires', 'requires (dev)');
+        $infos = execComposerCommand('show '.$package_name, null, true);
+        $infos_list = explode("\n", $infos);
+        $result = array();
+        $index = null;
+        foreach($infos_list as $k=>$infos) {
+            $infos = trim($infos);
+            if (!empty($infos)) {
+                if (false!==strpos($infos, ':')) {
+                    $parts = explode(':', $infos, 2);
+                    $index = trim(array_shift($parts));
+                    $result[$index] = trim(implode(':', $parts));
+                } elseif (!empty($infos) && in_array($infos, $labels)) {
+                    $index = $infos;
+                    $result[$index] = array();
+                } elseif (!empty($index) && isset($result[$index])) {
+                    if (in_array($index, $labels)) {
+                        if (false!==strstr($infos, '=>')) {
+                            $parts = explode('=>', $infos);
+                        } else {
+                            $parts = explode(' ', $infos);
+                        }
+                        if (count($parts)>1) {
+                            $subindex = trim(array_shift($parts));
+                            $result[$index][$subindex] = trim(implode(' ', $parts));
+                        } else {
+                            $result[$index][] = trim($parts[0]);
+                        }
+                    } else {
+                        $result[$index] .= ' '.$infos;
+                    }
+                }
+            }
         }
         return $result;
     }
-    return false;
 }
 
-function getCommitsHistory($path, $limit = false, $since = null, $until = null)
-{
-    $pretty_format = '----%ncommit-abbrev:%h%nauthor_name:%an%nauthor_email:%ae%ndate:%ai%ntitle:%s%nmessage:%b%n';
-    $added = '';
-    if (!empty($since) || !empty($until)) {
-        if (empty($since)) {
-            $last_commit = getCommitsHistory($path, '-1');
-            $since = $last_commit[0]['commit-abbrev'];
+if (!function_exists('getPackageSourceUrl')) {
+    function getPackageSourceUrl($package)
+    {
+        if (!is_array($package)) {
+            $package = getComposerPackageInfos($package);
         }
-        $added = $since.'..'.$until;
-    }
-    $history_cmd = 'log '.(!empty($limit) ? $limit.' ' : '').$added.' --format="'.$pretty_format.'"';
-    $history = execGitCommand('--no-pager '.$history_cmd, $path, true);
-    $changelog = array();
-
-    $commits_list = explode("----\n", $history);
-    foreach($commits_list as $k=>$commit) {
-        $changelog_entry = array();
-        $last_index = null;
-        $commit_infos = explode("\n", $commit);
-        if (count($commit_infos)>1 && !empty($commit_infos)) {
-            foreach($commit_infos as $k=>$infostr) {
-                $ok_match = preg_match('/^([a-z-_]+):(.*)$/i', $infostr, $matches);
-                if ($ok_match!==0) {
-                    $last_index = $matches[1];
-                    $changelog_entry[$matches[1]] = $matches[2];
-                } else {
-                    if (!isset($last_index)) $last_index = 'info';
-                    if (isset($changelog_entry[$last_index])) {
-                        if (!is_array($changelog_entry[$last_index])) {
-                            $changelog_entry[$last_index] = array($changelog_entry[$last_index]);
-                        }
-                    } else {
-                        $changelog_entry[$last_index] = array();
-                    }
-                    $changelog_entry[$last_index][] = $infostr;
-                }
-            }
-            foreach($changelog_entry as $k=>$v) {
-                if (is_array($v)) {
-                    $l = trim(end($v));
-                    while(count($v)>0 && true===empty($l)) {
-                        array_pop($v);
-                        $l = trim(end($v));
-                    }
-                    $changelog_entry[$k] = $v;
-                }
-            }
-            if (!empty($changelog_entry)) {
-                $changelog[] = $changelog_entry;
+        if (!empty($package)) {
+            if (isset($package['source']) && $package['source']!=='[]') {
+                $parts = explode(' ', $package['source']);
+                return (isset($parts[1]) && !empty($parts[1]) ? trim($parts[1]) : null);
             }
         }
+        return null;
     }
-    return $changelog;     
 }
 
 // ----------------

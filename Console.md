@@ -113,6 +113,29 @@ This section is just a copy of the man for each script.
         
               * ...
     
+### GIT submodules database generator from `composer.json` dependencies: `submodules-from-packages-builder`
+
+    Presentation
+        Shell script to generate a `.gitmodules` file for a GIT repository of a package based on its Composer dependencies.
+
+    Usage
+        ~$ php submodules-from-packages-builder -[option[=value]]
+
+    Options
+        p=path        path to the working root directory, absolute path or relative to `cwd` (default is `.`, the current directory)
+        f=filename    the filename defining the package (default is `composer.json`)
+        t=filename    the target filename to populate (default is `.gitmodules`)
+        b=filename    the filename used to backup an existing file (default is `.gitmodules.bak`)
+        m=mode        the Composer mode to use for "require" statement (default is normal, can be "dev")
+        o             output: writes the changelog on screen instead of writing the file
+        i             init: run `git submodule init` after file creation to test its content
+        g             "GO": process the changelog generation ; use this option to avoid viewing the help without any option
+
+    Generated module block for each dependency
+
+        [submodule "package/name"]
+                path = package/path/in/project
+                url = git source url
 
 
 ----
