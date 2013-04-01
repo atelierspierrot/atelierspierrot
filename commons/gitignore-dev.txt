@@ -2,12 +2,18 @@
 !.gitkeep
 
 # OS & software files
-._*
 .DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+Icon
+._*
 *~
+*~lock*
 Thumbs.db
 ehthumbs.db
-Icon
+Desktop.ini
 
 # Les Ateliers specifics:
 

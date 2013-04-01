@@ -8,18 +8,25 @@ For more infos about `.gitignore` files, see <https://help.github.com/articles/i
 
 ## Overview
 
+Below is the default `.gitignore` we use in our packages. A sample file is embeded in the
+package at <commons/gitignore.txt>.
 
     # Hack to allow keeping an empty directory
     !.gitkeep
 
     # OS & software files
-    ._*
     .DS_Store
+    .AppleDouble
+    .LSOverride
+    .Spotlight-V100
+    .Trashes
+    Icon
+    ._*
     *~
     *~lock*
     Thumbs.db
     ehthumbs.db
-    Icon
+    Desktop.ini
 
     # Les Ateliers specifics:
     
@@ -36,6 +43,39 @@ For more infos about `.gitignore` files, see <https://help.github.com/articles/i
     tmp/*
     dev/*
 
+To use our `commons/gitignore.txt` default file, just run:
+
+    ~$ cp path/to/atelierspierrot/commons/gitignore.txt path/to/git/project/.gitignore
+
+
+## Exclude files globaly
+
+As explained on the [GitIgnore page of GitHub](https://github.com/github/gitignore), you
+can define some files excluded for all git projects on a device running:
+
+    ~$ git config --global core.excludesfile your_file/path
+
+A sample file is embeded in the package at <commons/gitignore-global.txt>. To use it on your
+machinge, run:
+
+    ~$ cp path/to/atelierspierrot/commons/gitignore-global.txt ~/.gitignore_global
+    ~$ git config --global core.excludesfile ~/.gitignore_global
+
+Below is our current `gitignore_global` content:
+
+    # OS & software files
+    .DS_Store
+    .AppleDouble
+    .LSOverride
+    .Spotlight-V100
+    .Trashes
+    Icon
+    ._*
+    *~
+    *~lock*
+    Thumbs.db
+    ehthumbs.db
+    Desktop.ini
 
 
 ----

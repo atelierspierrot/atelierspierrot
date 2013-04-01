@@ -34,6 +34,10 @@ foreach($librequires as $def) {
     }
 }
 
+// Set a default timezone to avoid PHP5 warnings
+$default_timezone = @date_default_timezone_get();
+@date_default_timezone_set( isset($default_timezone) ? $default_timezone : 'Europe/London' );
+
 // ----------------
 // CLI utilities
 // ----------------
