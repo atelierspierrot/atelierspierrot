@@ -16,6 +16,7 @@ For more infos about `.gitignore` files, see <https://help.github.com/articles/i
     ._*
     .DS_Store
     *~
+    *~lock*
     Thumbs.db
     ehthumbs.db
     Icon
