@@ -30,17 +30,14 @@ Options:
     -i        Interactive: ask for confirmation before any action
     -x        Debug: see commands to run but not run them actually
 
-You can group options like '-xc' unless you set an argument:
-    ~\$ sh ${0} -ab -c=arg -d       // here, all options are valid
-
-You can use '--' to specify the end of the script options:
-    ~\$ sh ${0} -ab -c=arg -- -d    // here, 'd' will be ignore
+You can group options like '-xc', set an option argument like '-d(=)argument'
+and use '--' to explicitly specify the end of the script options.
 "
 
 #### common settings ##########################
 
 # common options for all scripts
-COMMONOPTS=“hiqvx”
+COMMONOPTS=“hiqvx-:”
 # bold codes
 BOLD='\033[1m'
 NC='\033[0m' # No Color
@@ -157,7 +154,8 @@ error () {
 
 #### options treatment ##########################
 
-while getopts “$COMMONOPTS” OPTION; do
+while getopts “t:${COMMONOPTS}” OPTION; do
+    OPTARG="${OPTARG#=}"
     case $OPTION in
         h)
             title
@@ -181,8 +179,11 @@ while getopts “$COMMONOPTS” OPTION; do
             unset INTERACTIVE
             QUIET=true
             ;;
+        t)
+            verecho "test receiveing: ${OPTARG}"
+            ;;
         ?)
-            error "Unknown option '$OPTION'" 1
+            error "Unknown option '$OPTARG'" 1
             ;;
     esac
 done
