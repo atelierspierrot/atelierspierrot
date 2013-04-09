@@ -19,6 +19,7 @@
 VERSION="0.0.1-dev"
 NAME="$0"
 USAGE="This script is a bash script model.
+(for this model script only, you can test option with argument on option 't') 
 
 Usage:
     ~\$ sh ${0} -[options [=value]]
@@ -43,6 +44,14 @@ BOLD='\033[1m'
 NC='\033[0m' # No Color
 
 #### library ##########################
+
+#### _echo ( string )
+# echo the string with the true 'echo' command
+# use this for colorization
+_echo () {
+    $(which echo) $*
+    return 0
+}
 
 #### verecho ( string )
 # echo the string if "verbose" is "on"
@@ -79,7 +88,7 @@ iexec () {
 # execute the command if "debug" is "off", just write it on screen otherwise
 debexec () {
     if test "x$DEBUG" != 'x'; then
-        echo "${BOLD}debug >>${NC} $1" >&2
+        _echo -e "${BOLD}debug >>${NC} $1" >&2
     else
         eval $1
     fi
@@ -101,7 +110,7 @@ title () {
         if [ "x$VERSION" != 'x' ]; then
             TITLE="${TITLE} - v. [${VERSION}]"
         fi    
-        echo "${BOLD}##  ${TITLE}  ##${NC}" >&2
+        _echo -e "${BOLD}##  ${TITLE}  ##${NC}" >&2
         echo >&2
         export TITLEDONE=true
     fi
@@ -114,9 +123,9 @@ info () {
     USEBOLD=${2:-true}
     if test "$USEBOLD" != 'false'
     then
-        echo "${BOLD}   >> $1${NC}" >&2
+        _echo -e "${BOLD}   >> $1${NC}" >&2
     else
-        echo "${BOLD}   >>${NC} $1" >&2
+        _echo -e "${BOLD}   >>${NC} $1" >&2
     fi
     return 0
 }
@@ -137,7 +146,7 @@ prompt () {
 # writes the error string on screen and return
 warning () {
     echo >&2
-    echo "${BOLD}!  >> ${1:-unknown error}${NC}" >&2
+    _echo -e "${BOLD}!  >> ${1:-unknown error}${NC}" >&2
     echo >&2
     return 0
 }
@@ -146,7 +155,7 @@ warning () {
 # writes the error string on screen and then exit with an error status, default is 1
 error () {
     echo >&2
-    echo "${BOLD}!! >> ${1:-unknown error}${NC}" >&2
+    _echo -e "${BOLD}!! >> ${1:-unknown error}${NC}" >&2
     echo "      (to get help, run: '~$ sh $0 -h')" >&2
     echo >&2
     exit ${2:-1}
@@ -180,7 +189,7 @@ while getopts “t:${COMMONOPTS}” OPTION; do
             QUIET=true
             ;;
         t)
-            verecho "test receiveing: ${OPTARG}"
+            verecho " - option 't': receiveing argument \"${OPTARG}\""
             ;;
         ?)
             error "Unknown option '$OPTARG'" 1
