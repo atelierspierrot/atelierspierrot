@@ -20,10 +20,13 @@ and you can go back to an old version if needed.
 All our repositories follows an architecture like:
 
 -   **branch "master"**: this is the master stable actual version of the package ; it does
-    NOT include the documentation (*if so*) and is the branch used by "Packagist"
--   **branch "dev"**: this is the development branch of the package ; it can be quite
-    ahead from the "master" one by some commits not yet merged in "master" and DOES include
-    the documentation ; in some cases, it also includes some "build" stuff.
+    NOT include the documentation (*if so*) and is the branch used by "Packagist" ;
+-   **branch "dev"**: this is the mirror of the "matser" branch for developments ; it can be quite
+    ahead from the "master" one by some commits not yet merged in "master" (*but with tested evolutions*)
+    and DOES include the documentation ; in some cases, it also includes some "build" stuff ;
+-   **branch "wip"**: this is the development branch of the package ; it may be ahead from
+    the "master" branch by some commits not yet merged in "master" because not yet tested ;
+    this is the real work-in-progress and may NOT be used in your projects.
 
 
 Open-Source & Community
@@ -39,8 +42,7 @@ of the repository, modifying it and [asking to pull your modifications](https://
 the original branch.
 
 Please note that the "master" branch is **always the latest stable version** of the code. 
-Development is done on branch "dev" and you can create a new one for your own developments.
-
+Development is done on branches "dev" or "wip" and you can create a new one for your own developments.
 
 
 ----

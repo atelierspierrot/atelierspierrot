@@ -29,19 +29,37 @@ package at <commons/gitignore.txt>.
     Desktop.ini
 
     # Les Ateliers specifics:
-    
+
     # the composer lock file
     composer.lock
 
-    # the documentation, that is NOT under version-control
+    # user defined files
+    user/*
+
+    # the external packages installed by Composer, Template Engine or others
+    vendor/*
+    bin/vendor/*
+    data/vendor/*
+    src/vendor/*
+    www/vendor/*
+
+    # the documentation, that is NOT under version-control by default
+    # this may be commented on the "dev" branch
     phpdoc/*
 
-    # the external packages installed by Composer
-    vendor/*
-
     # for development ...
-    tmp/*
+    # this may be commented on the "wip" branch
     dev/*
+    build/*
+
+    # any "tmp*" file or dir
+    tmp*
+    bin/tmp*
+    demo/tmp*
+    data/tmp*
+    user/tmp*
+    src/tmp*
+    www/tmp*
 
 To use our `commons/gitignore.txt` default file, just run:
 

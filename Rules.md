@@ -28,12 +28,34 @@ A common architecture for one of our PHP packages should be something like:
     | composer.json
     | sami.config.php
     | README.md
+    | bin/
+    | ---- binary-script.php
+    | ---- binary-script.sh
+    | data/
+    | ----- data-file.csv
+    | demo/
+    | ----- demo-page.html
+    | phpdoc/
+    | ------- automatic PHP documentation ...
     | src/
     | ---- package-namespace/
-    | ---------------------- class-name.php
-    | bin/
-    | ------ binary-script.php
-    | phpdoc/
+    | ---------------------- ClassName.php
+    | user/
+    | ----- user-config.ini
+    | www/
+    | ---- assets/
+    | ------------ script-file.js
+    | ------------ styles-file.css
+    | ---- index.php
+
+Any third-party dependency installed by Composer, our internal [Template Engine](https://github.com/atelierspierrot/templatengine)
+or any other package installer are stored in a `vendor/` directory or sub-directory ; you
+may not modify its content.
+
+Any temporary file such as cached files or other environment dependent file is stored in a
+`tmp/` directory or sub-directory. Any temporary file NOT stored in a `tmp/` directory will
+be named `tmp*` (where the asterisk may be anything). All these contents are excluded from
+version control and can be deleted with (we hope so) no incidence for the project.
 
 
 ----
