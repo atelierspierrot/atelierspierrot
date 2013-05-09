@@ -28,35 +28,84 @@ A common architecture for one of our PHP packages should be something like:
     | composer.json
     | sami.config.php
     | README.md
+    |
     | bin/
     | ---- binary-script.php
     | ---- binary-script.sh
+    |
     | data/
     | ----- data-file.csv
+    |
     | demo/
     | ----- demo-page.html
+    |
+    | doc/
+    | ---- documentation-file.md
+    |
+    | etc/
+    | ---- config-file.ini
+    |
     | phpdoc/
     | ------- automatic PHP documentation ...
+    |
     | src/
     | ---- package-namespace/
     | ---------------------- ClassName.php
+    |
     | user/
     | ----- user-config.ini
+    |
+    | var/
+    | ---- variable-file.txt
+    |
     | www/
     | ---- assets/
     | ------------ script-file.js
     | ------------ styles-file.css
     | ---- index.php
 
+For those who know a linux kernel, we mostly try to follow the linux architecture.
+
 Any third-party dependency installed by Composer, our internal [Template Engine](https://github.com/atelierspierrot/templatengine)
-or any other package installer are stored in a `vendor/` directory or sub-directory ; you
-may not modify its content.
+or any other package installer are stored in a `vendor/` directory or sub-directory ;
+you may not modify its content.
 
 Any temporary file such as cached files or other environment dependent file is stored in a
 `tmp/` directory or sub-directory. Any temporary file NOT stored in a `tmp/` directory will
 be named `tmp*` (where the asterisk may be anything). All these contents are excluded from
 version control and can be deleted with (we hope so) no incidence for the project.
 
+### Overview
+
+-   `bin/` contains the application console, ist installer/updater and third-party shell scripts;
+
+-   `data/` contains data files like CSV;
+
+-   `demo/` contains the HTML demonstration of the package;
+
+-   `doc/` contains some documentation files, mostly in Markdown format;
+
+-   `etc/` contains some configuration files;
+
+-   `src/` contains the PHP sources of the application and the template files;
+
+-   `user/` is the directory to put your own user configuration or templates (*see the 
+    [Fallback system](#fallback-system) section for more infos*) ;
+
+-   `var/` contains variable files (*that should be re-written*);
+
+-   `www/` sub-directory must be the `DOCUMENT_ROOT` of your virtual host (*anything outside 
+    this directory is not used in HTML pages*) ;
+    
+### Fallback system
+
+Our packages are constructed, when it is possible and relevant, to allow user to overwrite
+some configuration settings and the templates used for pages building.
+
+This feature is quite simple: any file found in the `user/XXX/` directory will be taken
+primary to the default package file, where `XXX` is the relative path of the original file
+in the package.
+    
 
 ----
 **Copyleft (c) 2008-2013 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.

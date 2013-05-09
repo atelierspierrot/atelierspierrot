@@ -26,8 +26,10 @@ user/*
 # the external packages installed by Composer, Template Engine or others
 vendor/*
 bin/vendor/*
+etc/vendor/*
 data/vendor/*
 src/vendor/*
+var/vendor/*
 www/vendor/*
 
 # the documentation, that is NOT under version-control by default
@@ -42,8 +44,9 @@ build/*
 # any "tmp*" file or dir
 tmp*
 bin/tmp*
-demo/tmp*
 data/tmp*
-user/tmp*
+demo/tmp*
+etc/tmp*
 src/tmp*
+var/tmp*
 www/tmp*
