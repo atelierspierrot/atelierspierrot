@@ -77,7 +77,7 @@ follows the standard naming rule.
 For example, if your want to read the `Patterns\Interfaces\ArrayInterface` code, you will
 find it in the file `src/Patterns/Interfaces/ArratInterface.php` in the package.
 
-So, to use some package's classes in your work, you just need to register its namespace directory
+So, to use some package's classes in your work, you just need to register their namespaces directories
 using the [SplClassLoader](https://gist.github.com/jwage/221634) or any other custom autoloader.
 A copy of the "SplClassLoader" is often included in the packages, in the `src/` directory.
 

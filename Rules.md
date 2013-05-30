@@ -42,7 +42,7 @@ A common architecture for one of our PHP packages should be something like:
     | doc/
     | ---- documentation-file.md
     |
-    | etc/
+    | config/
     | ---- config-file.ini
     |
     | phpdoc/
@@ -70,7 +70,7 @@ Any third-party dependency installed by Composer, our internal [Template Engine]
 or any other package installer are stored in a `vendor/` directory or sub-directory ;
 you may not modify its content.
 
-Any temporary file such as cached files or other environment dependent file is stored in a
+Any temporary file such as cached files or other environment dependent files are stored in a
 `tmp/` directory or sub-directory. Any temporary file NOT stored in a `tmp/` directory will
 be named `tmp*` (where the asterisk may be anything). All these contents are excluded from
 version control and can be deleted with (we hope so) no incidence for the project.
@@ -85,7 +85,7 @@ version control and can be deleted with (we hope so) no incidence for the projec
 
 -   `doc/` contains some documentation files, mostly in Markdown format;
 
--   `etc/` contains some configuration files;
+-   `config/` contains some configuration files;
 
 -   `src/` contains the PHP sources of the application and the template files;
 
