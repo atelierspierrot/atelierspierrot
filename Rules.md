@@ -10,7 +10,7 @@ To build a comprehensive and maintainable code, we try to follow the coding stan
 naming rules most commonly in use:
 
 -   the [PEAR coding standards](http://pear.php.net/manual/en/standards.php)
--   the [PHP Framework Interoperability Group standards](https://github.com/php-fig/fig-standards).
+-   the [PHP Framework Interoperability Group standards](http://github.com/php-fig/fig-standards).
 
 Knowing that, all classes of our packages are named and organized in an architecture to
 allow the use of the [standard SplClassLoader](https://gist.github.com/jwage/221634).
@@ -27,6 +27,8 @@ A common architecture for one of our PHP packages should be something like:
 
     | composer.json
     | sami.config.php
+    | phpunit.xml.dist
+    | .travis.yml
     | README.md
     |
     | bin/
@@ -52,6 +54,9 @@ A common architecture for one of our PHP packages should be something like:
     | ---- package-namespace/
     | ---------------------- ClassName.php
     |
+    | tests/
+    | ---- unit-tests.php
+    |
     | user/
     | ----- user-config.ini
     |
@@ -66,7 +71,7 @@ A common architecture for one of our PHP packages should be something like:
 
 For those who know a linux kernel, we mostly try to follow the linux architecture.
 
-Any third-party dependency installed by Composer, our internal [Template Engine](https://github.com/atelierspierrot/templatengine)
+Any third-party dependency installed by Composer, our internal [Template Engine](http://github.com/atelierspierrot/templatengine)
 or any other package installer are stored in a `vendor/` directory or sub-directory ;
 you may not modify its content.
 
@@ -99,7 +104,7 @@ version control and can be deleted with (we hope so) no incidence for the projec
     
 ### Fallback system
 
-Our packages are constructed, when it is possible and relevant, to allow user to overwrite
+Our packages are constructed, when it is possible and relevant, to allow user to override
 some configuration settings and the templates used for pages building.
 
 This feature is quite simple: any file found in the `user/XXX/` directory will be taken

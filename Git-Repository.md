@@ -1,20 +1,20 @@
 GIT Repository
 ==============
 
-This document explains how we manage the GIT repositorise of our packages.
+This document explains how we manage the GIT repositories of our packages.
 
 For more infos about GIT, see <http://git-scm.com/>.
 
-For more infos about GitHub, see <https://github.com/about>.
+For more infos about GitHub, see <http://github.com/about>.
 
-For a list of our packages on GitHub, see <https://github.com/atelierspierrot>.
+For a list of our packages on GitHub, see <http://github.com/atelierspierrot>.
 
 
 Common Architecture
 -------------------
 
 All our packages are developped under a GIT version-control repository hosted by 
-[GitHub](https://github.com/about). This way, any update can be followed on a timeline
+[GitHub](http://github.com/about). This way, any update can be followed on a timeline
 and you can go back to an old version if needed.
 
 All our repositories follows an architecture like:
@@ -36,7 +36,7 @@ Our work are free softwares, mostly available under [General Public License vers
 you can freely use it, for yourself or a commercial use, modify its source code according to your needs, 
 freely distribute your work and propose it to the community, as long as you let an information about its first author.
 
-As the sources are hosted on a [GIT](http://git-scm.com/) repository on [GitHub](https://github.com/atelierspierrot),
+As the sources are hosted on a [GIT](http://git-scm.com/) repository on [GitHub](http://github.com/atelierspierrot),
 you can modify it, to ameliorate a feature or correct an error, by [creating your own fork](https://help.github.com/articles/fork-a-repo)
 of the repository, modifying it and [asking to pull your modifications](https://help.github.com/articles/using-pull-requests) on
 the original branch.

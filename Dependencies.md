@@ -11,7 +11,7 @@ Composer: PHP dependencies manager
 We use [Composer](http://getcomposer.org/) to automatically install/update the required 
 external PHP packages our own packages are based on.
 
-Some of our packages are registered in the [Packagist](https://packagist.org/packages/atelierspierrot/).
+Some of our packages are registered in the [Packagist](http://packagist.org/packages/atelierspierrot/).
 
 
 Sami: the new documentation generator
@@ -20,7 +20,7 @@ Sami: the new documentation generator
 In the past we often used [PHP Documentor](http://www.phpdoc.org/) to generate a 
 documentation of our scripts.
 
-But we now use [Sami](https://github.com/fabpot/Sami) as it is really easy-to-use and is 
+But we now use [Sami](http://github.com/fabpot/Sami) as it is really easy-to-use and is 
 naturally managed by Composer.
 
 As long as the package contains a `sami.config.php` file (*often at its root directory*), 
@@ -37,6 +37,24 @@ the `__DIR__.'/../tmp/'` directory outside of the GIT clone:
 
 The latest version of the `master` branch's documentation is available online for all of
 our packages at <http://docs.ateliers-pierrot.fr>.
+
+
+PHPUnit: the unit testing suite
+-------------------------------
+
+We try to prepare a set of unit-tests to validate each evolution of work on a package by
+using [PHPUnit](http://github.com/sebastianbergmann/phpunit/). Our tests will often be
+found in a `tests/` directory and the PHPUnit configuration resides in the file :
+`phpunit.xml.dist`. If you find this file in a package, you can run:
+
+    ~$ path/to/phpunit
+
+Use option `-h` for the help ; many configuration settings can be defined as command
+line options.
+
+Most of our packages that uses some unit-tests are integrated in the 
+[Travis CI](http://travis-ci.org/) automatic website, that validate the package after each
+commit.
 
 
 ----

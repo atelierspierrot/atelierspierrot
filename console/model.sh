@@ -3,7 +3,7 @@
 # Copyleft (c) 2013 Pierre Cassat and contributors
 # <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
 # License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
-# Sources <https://github.com/atelierspierrot/atelierspierrot>
+# Sources <http://github.com/atelierspierrot/atelierspierrot>
 # 
 # console/name-of-script.sh
 #
@@ -11,7 +11,7 @@
 # 
 #     ~$ sh path/to/name-of-script.sh -h
 # 
-# Or see: <https://github.com/atelierspierrot/atelierspierrot/Shell-Scripts.md>
+# Or see: <http://github.com/atelierspierrot/atelierspierrot/Shell-Scripts.md>
 # 
 
 #### HOW TO ##############################################################################

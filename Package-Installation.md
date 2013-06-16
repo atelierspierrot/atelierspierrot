@@ -7,19 +7,19 @@ use it in your code.
 
 You can install and include one of our packages in many ways:
 
--   make a clone of the package's [GitHub](https://github.com/atelierspierrot) repository
--   download an archive of the package's sources from the [GitHub](https://github.com/atelierspierrot) repository
+-   make a clone of the package's [GitHub](http://github.com/atelierspierrot) repository
+-   download an archive of the package's sources from the [GitHub](http://github.com/atelierspierrot) repository
 -   use our package's "packagist" from [Composer](https://packagist.org/packages/atelierspierrot/) 
 
 
 Clone a repository
 -------------------
 
-First, you can clone the package's [GitHub](https://github.com/atelierspierrot) repository
+First, you can clone the package's [GitHub](http://github.com/atelierspierrot) repository
 and include it "as is" in your poject. This solution allows you to follow sources updates
 running a `checkout` on your clone regularily.
 
-To clone a repository (*here is the example of the "[webfilesystem](https://github.com/atelierspierrot/webfilesystem)" package*)
+To clone a repository (*here is the example of the "[webfilesystem](http://github.com/atelierspierrot/webfilesystem)" package*)
 just run :
 
     ~$ mkdir clone_dir && cd clone_dir
@@ -37,7 +37,7 @@ scripts in your project.
 Download an archive
 -------------------
 
-You can also download an archive of the package repository from [GitHub](https://github.com/atelierspierrot).
+You can also download an archive of the package repository from [GitHub](http://github.com/atelierspierrot).
 To do so, just go to the GitHub homepage of the repository and click on the "ZIP" button. This way,
 you will have the last version of the "master" branch.
 
@@ -58,12 +58,12 @@ is as easy as adding to your `composer.json` file:
 
 Some of our packages are registered in the [Packagist](https://packagist.org/packages/atelierspierrot/)
 so that you don't need to do more than adding the package name to your "rqeuirements". For
-all other packages, you will need to add the [GitHub](https://github.com/atelierspierrot)
+all other packages, you will need to add the [GitHub](http://github.com/atelierspierrot)
 to the `repositories` entry of your `composer.json` manifest like:
 
     "repositories": [
         #...
-        { "type": "vcs", "url": "https://github.com/atelierspierrot/PACKAGE_NAME" }
+        { "type": "vcs", "url": "http://github.com/atelierspierrot/PACKAGE_NAME" }
     ],
 
 

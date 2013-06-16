@@ -5,11 +5,11 @@
 # License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
 # Sources <http://github.com/atelierspierrot/atelierspierrot>
 # 
-# console/name-of-script.sh
+# console/bookmarker.sh
 #
 # For more infos run:
 # 
-#     ~$ sh path/to/name-of-script.sh -h
+#     ~$ sh path/to/bookmarker.sh -h
 # 
 # Or see: <http://github.com/atelierspierrot/atelierspierrot/Shell-Scripts.md>
 # 
@@ -33,27 +33,29 @@
 
 VERSION="0.0.1-dev"
 NAME="$0"
-USAGE="This script is a bash script model.
-(for this model script only, you can test option with argument on option 't') 
-
-Usage:
-    ~\$ sh ${0} -[options [=value]]
-
-Options:
-    -h        Help: show this information message
-    -v        Verbose: increase script verbosity
-    -q        Quiet: decrease script verbosity, nothing will be written unless errors
-    -i        Interactive: ask for confirmation before any action
-    -x        Debug: see commands to run but not run them actually
-
-You can group options like '-xc', set an option argument like '-d(=)argument'
-and use '--' to explicitly specify the end of the script options.
-"
+USAGE="Create a bookmark file to remind a web-address. \n\
+\n\
+Usage:\n\
+    ~\$ ${0} -[options [=value]] <URL>\n\
+\n\
+Options:\n\
+    -n=X      Name: name of the generated file (default is URL's domain name)\n\
+    -t=X      Timeout: defines the timeout before redirection (default is 0)\n\
+    -c=\"X\"    Comment: add a comment string to the generated HTML file \n\
+    -h        Help: show this information message\n\
+    -v        Verbose: increase script verbosity\n\
+    -q        Quiet: decrease script verbosity, nothing will be written unless errors\n\
+    -i        Interactive: ask for confirmation before any action\n\
+    -x        Debug: see commands to run but not run them actually\n\
+\n\
+You can group options like '-xc', set an option argument like '-d(=)argument'\n\
+and use '--' to explicitly specify the end of the script options.\n\
+";
 
 #### LIBRARY #############################################################################
 
 # common options for all scripts
-COMMONOPTS="hiqvx-:"
+COMMONOPTS="hiqvxt:c:-:"
 
 # text formating codes
 BOLD='\033[1m'
@@ -178,7 +180,8 @@ error () {
 
 #### SCRIPT OPTIONS ######################################################################
 
-while getopts “t:${COMMONOPTS}” OPTION; do
+BK_URL="${@: -1}"
+while getopts "${COMMONOPTS}" OPTION; do
     OPTARG="${OPTARG#=}"
     case $OPTION in
     # you must keep these ones
@@ -188,39 +191,53 @@ while getopts “t:${COMMONOPTS}” OPTION; do
         x) DEBUG=true;
             quietecho "  -  debug option enabled: commands shown as 'debug >> cmd' are not executed";;
         q) unset VERBOSE; unset INTERACTIVE; QUIET=true;;
-    # you can skip the followings
-        t) verecho " - option 't': receiveing argument \"${OPTARG}\"";;
+        t) BK_TIMEOUT=$OPTARG;;
+        n) BK_NAME=$OPTARG;;
+        c) BK_COMMENT="$OPTARG";;
         ?) error "Unknown option '$OPTARG'" 1;;
     esac
 done
 
 #### SCRIPT PROCESS ######################################################################
-quietecho "_ go"
 
-# verecho() usage
-verecho "test of verecho() : this must be seen only with option '-v'"
+if [ -z $BK_URL ]; then
+    error "No URL specified (use option '-h' to get help) !"
+fi
+if [ -z $BK_NAME ]; then
+    BK_NAME=$(echo "$BK_URL" | awk -F/ '{print $3}')
+fi
+if [ -z $BK_TIMEOUT ]; then
+    BK_TIMEOUT=0
+fi
 
-# quietecho() usage
-quietecho "test of quietecho() : this must not be written with option '-q'"
-
-# iexec() usage
-verecho "test of iexec() : command will be prompted with option '-i'"
-iexec "ls -AlGF ."
-
-# info() usage
-verecho "test of info() : this will be shown with any option"
-info "My test info string"
-
-# warning() usage
-verecho "test of warning() : run option '-i' to not throw the error"
-iexec "warning 'My test warning info'"
-
-# error() usage
-verecho "test of error() : run option '-i' to not throw the error"
-iexec "error 'My test error' 3"
-echo "this will not be seen if the error has been thrown as the 'error()' function exits the script"
-
-quietecho "_ ok"
+cat <<EOF > "${BK_NAME}.html"
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8" />
+    <title>${BK_NAME}</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta http-equiv="refresh" content="${BK_TIMEOUT}; ${BK_URL}" />
+<style type="text/css">
+body, ul, li {margin:0; padding:0;font-family: Helvetica}
+body {background-color:#C5CCD4;background: -moz-repeating-linear-gradient( 0, #C5CCD4 0%, #C5CCD4 29%, #CBD2D8 29%, #CBD2D8 100% );background-image: -webkit-gradient(linear, left top, right top,  color-stop(0.7142, #C5CCD4), color-stop(0.7142, #CBD2D8));-webkit-background-size:7px 1px;-moz-background-size:7px 7px;background-size:7px 1px;background-repeat:repeat}
+h1 {color: white;font-family: Helvetica;font-size: 20px;font-weight: bold;margin: auto;overflow: hidden;text-align: center;text-overflow: ellipsis;text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0px;white-space: nowrap;width: 150px}
+header {background-image: -webkit-gradient(linear, 0% 0%, 0% 50%, from(rgba(176, 188, 205, 1)), to(rgba(129, 149, 175, 1)));background-image: -moz-linear-gradient(top, rgb(176, 188, 205) 50%, rgb(129, 149, 175) 100%);padding: 7px 10px;background-color: rgb(109, 132, 162);border-bottom-color:1px solid rgb(45, 54, 66);border-top:1px solid rgb(109, 132, 162);display: block;height: 31px;line-height: 30px;display: block;border-bottom: 1px solid #2C3542;border-top: 1px solid #CDD5DF}
+.button {color: #FFFFFF;text-decoration: none;background-image: -webkit-gradient(linear, top, bottom, from(#C5CCD4), to(#fff));background-image: -moz-linear-gradient(top, #C5CCD4, rgba(255,255,255,0.2));text-shadow:  0 -1px 0 rgba(0, 0, 0, 0.6);overflow: hidden;max-width: 80px;white-space: nowrap;text-overflow: ellipsis;font-family: Helvetica; font-size: 12px;font-weight:bold;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;height:30px;padding: 0 10px;-webkit-background-size: 100% 50%;-moz-background-size: 100% 50%;background-size: 100% 50%;background-repeat:no-repeat;border: 1px solid #2F353E;-webkit-box-shadow: 0 1px 0 rgba(255,255,255, 0.4), inset 0 1px 0 rgba(255,255,255,0.4);-moz-box-shadow: 0 1px 0 rgba(255,255,255, 0.4), inset 0 1px 0 rgba(255,255,255,0.4);box-shadow: 0 1px 0 rgba(255,255,255, 0.4), inset 0 1px 0 rgba(255,255,255,0.4);}
+.nav li {padding: 8px;}
+.cancel {float:left;background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8EA4C1), to(#5877A2));background-color:#4A6C9B;border-color: #2F353E #375073 #375073}
+.done {float: right;background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7B9EEA), to(#376FE0));background-color: #2463DE}
+article ul{width: 300px;background-color: #ffffff;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;border: 1px solid #A8ABAE;display: block;margin: 10px auto}
+article li {list-style-type:none;line-height: 44px;border-bottom:1px solid #A8ABAE;padding: 0 10px;text-align:center}
+article ul li:last-of-type {border-bottom:none}
+a{text-decoration:none}
+</style>
+<script type="text/javascript">addEventListener("load", function() {setTimeout(hideURLbar, 0);}, false);function hideURLbar(){window.scrollTo(0,1);}</script>
+</head><body>
+<header><nav><h1>${BK_NAME} - Bookmarker redirect</h1></nav></header>
+<article><ul><li><a href="${BK_URL}">${BK_URL}</a></li></ul><p>${BK_COMMENT}</p></article>
+</body></html>
+EOF
+info "OK - boolmarker created in '${BK_NAME}.html'"
 
 #### END OF SCRIPT #######################################################################
 exit 0

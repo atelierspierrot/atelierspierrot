@@ -68,7 +68,7 @@ To use our `commons/gitignore.txt` default file, just run:
 
 ## Exclude files globaly
 
-As explained on the [GitIgnore page of GitHub](https://github.com/github/gitignore), you
+As explained on the [GitIgnore page of GitHub](http://github.com/github/gitignore), you
 can define some files excluded for all git projects on a device running:
 
     ~$ git config --global core.excludesfile your_file/path
