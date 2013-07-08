@@ -1,0 +1,18 @@
+{
+    "type": "Feature",
+    "id": "atelierspierrot",
+    "properties": {
+        "name": "Les Ateliers Pierrot",
+        "amenity": "Maison de développement & création web",
+        "popupContent": "Les Ateliers Pierrot - for a web ... on the moon",
+        "srs": "EPSG:4326"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [48.891273, 2.416348]
+    },
+    "crs": {
+        "type": "link",
+        "properties": { "href": "http://www.ateliers-pierrot.fr/" }
+    }
+}
