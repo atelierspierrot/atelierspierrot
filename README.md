@@ -6,7 +6,7 @@ This repository contains various documentations & informations about our work as
 For more informations, here are some useful links of our web universe:
 
 -   <http://www.ateliers-pierrot.fr/>: our homepage (in construction for now),
--   <http://github.com/aterlierspierrot>: our [GitHub](http://www.github.com/) profile,
+-   <http://github.com/atelierspierrot>: our [GitHub](http://www.github.com/) profile,
 -   <https://packagist.org/packages/atelierspierrot/>: our [Packagist](https://packagist.org/) profile,
 -   <http://trac.ateliers-pierrot.fr/>: our own sources tracker (using [InDefero](http://www.indefero.net/)),
 -   <http://projects.ateliers-pierrot.fr/>: some demonstrations of our projects,
