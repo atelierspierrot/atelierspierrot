@@ -19,11 +19,9 @@ First, you can clone the package's [GitHub](http://github.com/atelierspierrot) r
 and include it "as is" in your poject. This solution allows you to follow sources updates
 running a `checkout` on your clone regularily.
 
-To clone a repository (*here is the example of the "[webfilesystem](http://github.com/atelierspierrot/webfilesystem)" package*)
-just run :
+To clone a repository just run :
 
-    ~$ mkdir clone_dir && cd clone_dir
-    ~$ git clone git://github.com/atelierspierrot/webfilesystem.git .
+    ~$ git clone git://github.com/atelierspierrot/PACKAGE_NAME.git path/to/your/project
     Cloning into ...
     ...
 
@@ -40,6 +38,17 @@ Download an archive
 You can also download an archive of the package repository from [GitHub](http://github.com/atelierspierrot).
 To do so, just go to the GitHub homepage of the repository and click on the "ZIP" button. This way,
 you will have the last version of the "master" branch.
+
+If you prefer to make this download in command line, you can run:
+
+    ~$ wget --no-check-certificate https://github.com/atelierspierrot/PACKAGE_NAME/archive/master.tar.gz
+    ~$ tar -xvf master.tar.gz
+    ~$ cp -r PACKAGE_NAME path/to/your/project/
+
+If some are availables, it is a good practice to download a TAG from the GitHub repository as
+they may be a stable version. To have a list of tags, browse to:
+
+    http://github.com/atelierspierrot/PACKAGE_NAME/tags
 
 See the [Including namespaces](#namespaces) section to learn how to include the package's
 scripts in your project.
@@ -66,6 +75,12 @@ to the `repositories` entry of your `composer.json` manifest like:
         { "type": "vcs", "url": "http://github.com/atelierspierrot/PACKAGE_NAME" }
     ],
 
+In certain cases, you can create a project directly from Composer running:
+
+    ~$ php path/to/composer.phar create-project atelierspierrot/PACKAGE_NAME path/to/your/project dev-master --no-dev
+
+You can select a specific version replacing `dev-master` by the version number.
+
 
 Including namepsaces {#namespaces}
 ----------------------------------
@@ -75,7 +90,7 @@ rules in PHP coding: each package as its own namespace and every class in the pa
 follows the standard naming rule.
 
 For example, if your want to read the `Patterns\Interfaces\ArrayInterface` code, you will
-find it in the file `src/Patterns/Interfaces/ArratInterface.php` in the package.
+find it in file `src/Patterns/Interfaces/ArratInterface.php` in the package.
 
 So, to use some package's classes in your work, you just need to register their namespaces directories
 using the [SplClassLoader](https://gist.github.com/jwage/221634) or any other custom autoloader.
