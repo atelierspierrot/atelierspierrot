@@ -6,8 +6,8 @@ These contents are designed to be viewed in a web browser using our
 [DocBook package](http://github.com/atelierspierrot/docbook).
 
 In all this respository documents, the key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
-"SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document
-are to be interpreted as described in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
+"SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" are to be interpreted
+as described in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
 
 For more informations, here are some useful links of our web universe:
 
