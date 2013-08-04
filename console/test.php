@@ -15,7 +15,7 @@
  *     ~$ php path/to/dir-cleaner -h
  * 
  */
-@ini_set('display_errors','1'); @error_reporting(E_ALL ^ E_NOTICE);
+@ini_set('display_errors','1'); @error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 
 define('_AP_SCRIPT_VERSION', 'wip');
 define('_AP_SCRIPT_NAME', 'CLI terminal & library tester');

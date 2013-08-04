@@ -15,7 +15,7 @@
  *     ~$ php path/to/submodules-from-packages-builder -h
  * 
  */
-@ini_set('display_errors','1'); @error_reporting(E_ALL ^ E_NOTICE);
+@ini_set('display_errors','1'); @error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 
 define('_AP_SCRIPT_VERSION', '1.0.0');
 define('_AP_SCRIPT_NAME', 'GIT submodules builder from a package Composer dependencies');
