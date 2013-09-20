@@ -57,6 +57,26 @@ Most of our packages that uses some unit-tests are integrated in the
 commit.
 
 
+PHP Mess Detector: see how the code is poorly written
+-----------------------------------------------------
+
+To follow the common "best practices" and keep our code maintainable and understandable,
+we try to keep it under the accepted limits of programmation language and organization.
+To check the code complexity, we use [PHP Mess Detector](http://phpmd.org/) which shows
+all part of the code out of these limits. "PHPMD" is mostly included in the Composer "dev"
+dependencies of our packages, so it is installed locally for any "dev" installation.
+
+Once installed, just run:
+
+    ~$ php vendor/phpmd/phpmd/src/bin/phpmd src text codesize
+
+Or, if you installed it globally in your system:
+
+    ~$ phpmd src text codesize
+
+The result is a full list of methods out of the limits, with concerned file and line.
+
+
 ----
 **Copyleft (c) 2008-2013 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.
 
