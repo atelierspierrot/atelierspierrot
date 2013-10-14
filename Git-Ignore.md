@@ -74,7 +74,7 @@ can define some files excluded for all git projects on a device running:
     ~$ git config --global core.excludesfile your_file/path
 
 A sample file is embeded in the package at <commons/gitignore-global.txt>. To use it on your
-machinge, run:
+machine (installing it at your `$HOME` directory root), run:
 
     ~$ cp path/to/atelierspierrot/commons/gitignore-global.txt ~/.gitignore_global
     ~$ git config --global core.excludesfile ~/.gitignore_global

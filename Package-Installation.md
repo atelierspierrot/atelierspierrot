@@ -39,7 +39,7 @@ You can also download an archive of the package repository from [GitHub](http://
 To do so, just go to the GitHub homepage of the repository and click on the "ZIP" button. This way,
 you will have the last version of the "master" branch.
 
-If you prefer to make this download in command line, you can run:
+If you prefer to make this download from the command line, you can run:
 
     ~$ wget --no-check-certificate https://github.com/atelierspierrot/PACKAGE_NAME/archive/master.tar.gz
     ~$ tar -xvf master.tar.gz

@@ -30,6 +30,7 @@ A common architecture for one of our PHP packages should be something like:
     | phpunit.xml.dist
     | .travis.yml
     | README.md
+    | LICENSE
     |
     | bin/
     | ---- binary-script.php
@@ -51,7 +52,7 @@ A common architecture for one of our PHP packages should be something like:
     | ------- automatic PHP documentation ...
     |
     | src/
-    | ---- package-namespace/
+    | ---- PackageNamespace/
     | ---------------------- ClassName.php
     |
     | tests/
@@ -59,9 +60,11 @@ A common architecture for one of our PHP packages should be something like:
     |
     | user/
     | ----- user-config.ini
+    | ----- UserClass.php
     |
     | var/
     | ---- variable-file.txt
+    | ---- history.log
     |
     | www/
     | ---- assets/
@@ -73,7 +76,7 @@ For those who know a linux kernel, we mostly try to follow the linux architectur
 
 Any third-party dependency installed by Composer, our internal [Template Engine](http://github.com/atelierspierrot/templatengine)
 or any other package installer are stored in a `vendor/` directory or sub-directory ;
-you may not modify its content.
+you may not modify its contents.
 
 Any temporary file such as cached files or other environment dependent files are stored in a
 `tmp/` directory or sub-directory. Any temporary file NOT stored in a `tmp/` directory will
@@ -82,7 +85,7 @@ version control and can be deleted with (we hope so) no incidence for the projec
 
 ### Overview
 
--   `bin/` contains the application console, ist installer/updater and third-party shell scripts;
+-   `bin/` contains the application console, its installer/updater and third-party shell scripts;
 
 -   `data/` contains data files like CSV;
 
@@ -100,7 +103,7 @@ version control and can be deleted with (we hope so) no incidence for the projec
 -   `var/` contains variable files (*that should be re-written*);
 
 -   `www/` sub-directory must be the `DOCUMENT_ROOT` of your virtual host (*anything outside 
-    this directory is not used in HTML pages*) ;
+    this directory is not used in HTML pages*);
     
 ### Fallback system
 

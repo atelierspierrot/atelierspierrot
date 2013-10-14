@@ -20,6 +20,7 @@ Our commit messages must follow this construction rule:
     
     And contains an infos like:
     Bug: URL or ID
+    Fix #ID
 
 To open a text editor from command line to fill your message just run:
 
