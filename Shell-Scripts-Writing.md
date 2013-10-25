@@ -22,7 +22,7 @@ best practice is to distinguish three types of messages:
 -   the **usage** string, longer, which may develop the role of each option, its default
     value, the aliases defined and any information that may help the user to understand
     how to get the wanted result to work. As this information may be quite long, it is 
-    a good idea to open with programs like `less` or `more` to use an internal pager.
+    a good idea to open it with programs like `less` or `more` to use an internal pager.
 
 -   the **manual** information, opened with the `man` program, which may be the final,
     literal and complete usage information of the script, with all useful information about
