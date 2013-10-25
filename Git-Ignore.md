@@ -11,10 +11,10 @@ For more infos about `.gitignore` files, see <https://help.github.com/articles/i
 Below is the default `.gitignore` we use in our packages. A sample file is embeded in the
 package at <commons/gitignore.txt>.
 
-    # Hack to allow keeping an empty directory
+    ### Hack to allow keeping an empty directory
     !.gitkeep
 
-    # OS & software files
+    ### OS & software files
     .DS_Store
     .AppleDouble
     .LSOverride
@@ -28,20 +28,27 @@ package at <commons/gitignore.txt>.
     ehthumbs.db
     Desktop.ini
 
-    # Les Ateliers specifics:
+    # IDE files
+    # to be commented to include them in a project
+    .project
+    .buildpath
+    .idea/*
+
+    ### Les Ateliers specifics:
 
     # the composer lock file
     composer.lock
 
+    # any "tmp*" file or dir anywhere
+    *tmp*
+
     # user defined files
     user/*
+    */user/*
 
     # the external packages installed by Composer, Template Engine or others
     vendor/*
-    bin/vendor/*
-    data/vendor/*
-    src/vendor/*
-    www/vendor/*
+    */vendor/*
 
     # the documentation, that is NOT under version-control by default
     # this may be commented on the "dev" branch
@@ -51,15 +58,6 @@ package at <commons/gitignore.txt>.
     # this may be commented on the "wip" branch
     dev/*
     build/*
-
-    # any "tmp*" file or dir
-    tmp*
-    bin/tmp*
-    demo/tmp*
-    data/tmp*
-    user/tmp*
-    src/tmp*
-    www/tmp*
 
 To use our `commons/gitignore.txt` default file, just run:
 
