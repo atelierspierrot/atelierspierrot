@@ -3,7 +3,7 @@
 
 # TEAM
 
-    Piero Wbmstr -- lead developer -- piero.wbmstr@gmail.com -- http://github.com/PieroWbmstr
+    Piero Wbmstr -- lead developer -- piwi@ateliers-pierrot.fr -- http://github.com/pierowbmstr
 
 # THANKS
 
