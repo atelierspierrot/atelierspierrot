@@ -53,8 +53,8 @@ And, for our scripts, you can also:
 -   use an equal sign between the option and its argument, like: `-ab -c=argument` or `-abc=argument`
 
 
-Common behaviour
-----------------
+Common behavior
+---------------
 
 The script model embeds a library of shell functions to construct an homogeneus script execution
 and user information. Have a look in the `library` part of [the model](commons/model.sh.txt) for
