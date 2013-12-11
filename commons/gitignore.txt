@@ -28,9 +28,10 @@ Desktop.ini
 
 # IDE files
 # to be commented to include them in a project
+.settings/
 .project
 .buildpath
-.idea/*
+.idea/
 
 ### Les Ateliers specifics
 
