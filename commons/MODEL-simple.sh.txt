@@ -1,0 +1,112 @@
+#!/bin/bash
+#
+# Copyleft (c) 2013 Pierre Cassat and contributors
+# <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
+# License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
+# Sources <http://github.com/atelierspierrot/atelierspierrot>
+#
+# See instructions at the bottom of this file.
+# 
+
+#### SCRIPT SETTINGS #####################################################################
+
+# version (used by -V)
+VERSION="0.0.1-dev"
+# name of the script (used by -V)
+NAME="$0"
+# common options
+COMMONOPTS="hiqvxV"
+# presentation string (used by -h)
+PRESENTATION="This script is a bash script model."
+# usage string (used by -h and errors)
+USAGE=$(cat <<EOF
+Usage:        ${0}  [-${COMMONOPTS}]  [options [=value]]
+
+Options:
+    -h        help: show this information message
+    -v        verbose: increase script verbosity
+    -q        quiet: decrease script verbosity, nothing will be written unless errors
+    -i        interactive: ask for confirmation before any action
+    -x        debug: see commands to run but not run them actually
+    -V        version infos
+EOF
+);
+
+#### LIBRARY #############################################################################
+
+# script flags
+VERBOSE=false; QUIET=false; INTERACTIVE=false; DEBUG=false;
+
+# show version info
+version () { echo "${NAME} ${VERSION}"; return 0; }
+
+# show help info
+help () { version; echo; echo "${PRESENTATION}"; echo; usage; return 0; }
+
+# show usage info
+usage () { echo "${USAGE}"; return 0; }
+
+# error ( string , exit status = 1 )
+error () { echo "!! >> ${1:-unknown error}"; echo; usage; exit ${2:-1}; }
+
+# script options treatment
+while getopts "${COMMONOPTS}-:" OPTION; do
+    OPTARG="${OPTARG#=}"
+    case $OPTION in
+        h) help && exit 0;;
+        i) INTERACTIVE=true; QUIET=false;;
+        v) VERBOSE=true; QUIET=false;;
+        x) DEBUG=true;;
+        q) VERBOSE=false; INTERACTIVE=false; QUIET=true;;
+        V) version && exit 0;;
+        ?) ;;
+    esac
+done
+
+#### SCRIPT PROCESS ######################################################################
+
+$DEBUG \
+    && echo "debug echo" \
+    || echo "NO debug echo";
+$VERBOSE && echo "verbose echo";
+$QUIET && echo "quiet echo";
+$INTERACTIVE && echo "interactive echo";
+echo YO
+
+#error "my error string"
+
+exit 0
+
+#### HOW TO ##############################################################################
+#
+# ## Usage
+#
+# To build a new shell script based on this model, make a copy of it, rename it as 
+# `XXX.sh`, give it execution rights running `chmod a+x XXX.sh` and then open it in an
+# editor like VIM.
+#
+# The first thing to do is to edit the "script settings" first part writing your script name 
+# and version and a long string explaining its usage. You can add any setting required in 
+# your script.
+#
+# Finally, go to the "script process" section and write your script.
+#
+# ## Simple library
+#
+# A simple library is embedded with common functions such as `error (str , status)`.
+#
+# ## Common options
+#
+# - option `-x` enables the `DEBUG` script's flag
+# - option `-v` enables the `VERBOSE` script's flag
+# - option `-q` enables the `QUIET` script's flag
+# - option `-i` enables the `INTERACTIVE` script's flag
+#
+#       $FLAG \
+#           && echo "when flag is ON" \
+#           || echo "when flag is OFF (default)";
+#
+# Return bugs and follow source updates at
+# <http://github.com/atelierspierrot/atelierspierrot/commons/MODEL-simple.sh.txt>
+#
+##########################################################################################
