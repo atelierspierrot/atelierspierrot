@@ -1,0 +1,20 @@
+########################################################################################
+#
+# Shortcut GIT aliases of Les Ateliers Pierrot's environment
+#
+# Copyleft (c) 2013 Pierre Cassat and contributors
+# <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
+# License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
+# Sources <http://github.com/atelierspierrot/atelierspierrot/common/git-aliases.txt>
+#
+########################################################################################
+
+# gitk log
+# see <https://gist.github.com/pierowbmstr/10463831>
+git config --global alias.k "log --graph --full-history --all --color \
+    --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%cN <%cE>%Creset'";
+
+# colorized and verbose git branch
+git config --global alias.br "branch --color --list --verbose";
+
+# see <https://gist.github.com/henrik/31631> for a pretty and informative GIT prompt command line

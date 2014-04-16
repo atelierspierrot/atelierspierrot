@@ -1,0 +1,60 @@
+########################################################################################
+#
+# Common bash aliases of Les Ateliers Pierrot's environment
+#
+# Copyleft (c) 2013 Pierre Cassat and contributors
+# <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
+# License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
+# Sources <http://github.com/atelierspierrot/atelierspierrot/common/bash-aliases.txt>
+#
+########################################################################################
+#
+# To use this sample file, run:
+#   cp commons/bash-aliases.txt ~/.bash_aliases
+#
+
+# 'eecho' for special chars
+alias eecho='echo -e '
+
+# '..' to go back one level
+alias ..='cd ..'
+
+# make destructive commands interactive
+# overwrite it with option '-f'
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+ 
+# grep more user friendly by highlighting matches
+# and exclude grepping through CSV folders
+alias grep='grep --color=auto --exclude-dir=\.svn  --exclude-dir=\.git'
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias lll='ls -alFh'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# alias to see $PATH as multi-line
+alias showpath='echo -e ${PATH//:/\\n}'
+
+# MacOSX special : 'wget' emulation
+if [ -z $(which wget) ]; then
+	alias wget='curl -C - -O '
+fi
+
