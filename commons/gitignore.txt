@@ -11,6 +11,7 @@
 
 ### Hack to allow keeping an empty directory
 !.gitkeep
+!*/.gitkeep
 
 ### OS & software files
 .DS_Store
