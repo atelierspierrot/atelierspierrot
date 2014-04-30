@@ -29,6 +29,21 @@ All our repositories follows an architecture like:
     this is the real work-in-progress and may NOT be used in your projects.
 
 
+Versioning
+----------
+
+You try to follow the [Semantic Versioning](http://semver.org/) rules to build our releases
+references. Which means that any release is named like `X.Y.Z(-status)` where:
+
+-   `X` is the major version number ; it may change only when the application API changes
+-   `Y` is the minor version number ; it may be incremented for each new release of a major version,
+    as long as the changes are not a bug fix
+-   `Z` is the last bugfix reference ; it may only change if a bug has been identified and
+    fixed ; this king of update MUST be attached to a bug ticket
+-   the `status` usually informs about a pre-release state: `alpha`, `beta` etc ; it remains
+    on `dev` for our development branches (such as the `wip` one as explained above).
+
+
 Open-Source & Community
 -----------------------
 
