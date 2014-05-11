@@ -29,10 +29,27 @@ Desktop.ini
 
 # IDE files
 # to be commented to include them in a project
-.settings/
+.cache
+.settings
 .project
 .buildpath
-.idea/
+.idea
+.tmproj
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.zip
+*.vi
 
 ### Les Ateliers specifics
 
