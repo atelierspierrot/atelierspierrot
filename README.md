@@ -11,7 +11,7 @@ as described in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
 
 For more informations, here are some useful links of our web universe:
 
--   <http://www.ateliers-pierrot.fr/>: our homepage (in construction for now),
+-   <http://www.ateliers-pierrot.fr/>: our homepage,
 -   <http://github.com/atelierspierrot>: our [GitHub](http://www.github.com/) profile,
 -   <https://packagist.org/packages/atelierspierrot/>: our [Packagist](https://packagist.org/) profile,
 -   <http://trac.ateliers-pierrot.fr/>: our own sources tracker (using [InDefero](http://www.indefero.net/)),
