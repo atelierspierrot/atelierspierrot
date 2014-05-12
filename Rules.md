@@ -116,7 +116,7 @@ in the package.
     
 
 ----
-**Copyleft (c) 2008-2013 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.
+**Copyleft (c) 2008-2014 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.
 
 Scripts are licensed under the [GNU General Public License version 3](http://www.gnu.org/licenses/gpl.html).
 
