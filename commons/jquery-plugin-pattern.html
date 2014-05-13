@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery plugin pattern</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script>
+
+// the semi-colon before function invocation is a safety net against concatenated
+// scripts and/or other plugins which may not be closed properly.
+;(function ( $, window, document, undefined ) {
+	"use strict";
+
+	// undefined is used here as the undefined global variable in ECMAScript 3 is
+	// mutable (ie. it can be changed by someone else). undefined isn't really being
+	// passed in so we can ensure the value of it is truly undefined. In ES5, undefined
+	// can no longer be modified.
+
+	// window and document are passed through as local variable rather than global
+	// as this (slightly) quickens the resolution process and can be more efficiently
+	// minified (especially when both are regularly referenced in your plugin).
+
+
+	// PLUGIN PUBLIC CLASS DEFINITION
+	
+	var Plugin = function (element, options) {
+		this.element 	= element;
+		this.$element 	= $(element);
+		this.settings 	= $.extend( {}, Plugin.DEFAULTS, options );
+		this.init();
+	};
+
+	// plugin info
+	Plugin.NAME 		= "defaultPluginName";
+
+	Plugin.VERSION 		= "X.Y.Z";
+
+	Plugin.SHORTNAME 	= "defaultPluginShortname";
+
+	Plugin.DEFAULTS 	= {
+		propertyName: "original value"
+	};
+
+	// plugin methods
+	Plugin.prototype.init = function () {
+		// some logic
+		console.log("initializing plugin '" + Plugin.NAME + "' (version " + Plugin.VERSION + ") on element: ", this.$element, " with options: ", this.settings);
+	};
+
+	Plugin.prototype.otherFunction = function () {
+		// some logic
+	};
+
+
+	// PLUGIN jQuery DEFINITION
+
+	// The actual plugin constructor
+	function PluginLoader ( option ) {
+		return this.each(function() {
+			  var $this = $(this);
+			  var data = $this.data( Plugin.SHORTNAME );
+			  var options = typeof option == 'object' ? option : {};
+      
+			if (!data) $this.data( Plugin.SHORTNAME, (data = new Plugin(this, options)));
+			if (typeof option == 'string') data[option]();
+		});
+	}
+
+	// reference the plugin to jQuery with a "no conflict" feature
+	var old = $.fn[ Plugin.NAME ];
+	$.fn[ Plugin.NAME ] 			= PluginLoader;
+	$.fn[ Plugin.NAME ].Constructor = Plugin;
+	$.fn[ Plugin.NAME ].noConflict 	= function () {
+		$.fn[ Plugin.NAME ] = old;
+		return this;
+	};
+
+})( jQuery, window, document );
+
+</script>
+</head>
+<body>
+	<div id="element">my element content</div>
+	<script>
+		$(function() {
+			$("#element").defaultPluginName({
+				propertyName: "a custom value"
+			});
+		});
+	</script>
+	<hr><div>Have a look in the source code of this page to see the jQuery plugin pattern. Inspired by <a href="https://github.com/jquery-boilerplate/jquery-boilerplate">jquery-boilerplate</a>.</div>
+</body>
+</html>
