@@ -17,4 +17,13 @@ git config --global alias.k "log --graph --full-history --all --color \
 # colorized and verbose git branch
 git config --global alias.br "branch --color --list --verbose";
 
+# shortcuts
+git config --global alias.co "checkout"
+git config --global alias.ci "commit"
+git config --global alias.st "status"
+git config --global alias.br "branch --color --list --verbose"
+git config --global alias.hist "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+git config --global alias.type "cat-file -t"
+git config --global alias.dump "cat-file -p"
+
 # see <https://gist.github.com/henrik/31631> for a pretty and informative GIT prompt command line
