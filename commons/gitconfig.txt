@@ -1,0 +1,21 @@
+########################################################################################
+#
+# Common global ".gitconfig" of Les Ateliers Pierrot's environment
+#
+# Copyleft (c) 2013 Pierre Cassat and contributors
+# <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
+# License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
+# Sources <http://github.com/atelierspierrot/atelierspierrot/common/gitconfig.txt>
+#
+########################################################################################
+[user]
+	name = Piero Wbmstr
+	email = piwi@ateliers-pierrot.fr
+[core]
+	excludesfile = / [ path/to/your/HOME ] /.gitignore_global
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[alias]
+	k = log --graph --full-history --all --color     --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%cN <%cE>%Creset'
+	br = branch --color --list --verbose
