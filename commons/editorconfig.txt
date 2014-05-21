@@ -1,4 +1,20 @@
-# editorconfig.org
+########################################################################################
+#
+# Common .editorconfig of Les Ateliers Pierrot's environment
+#
+# Copyleft (c) 2013 Pierre Cassat and contributors
+# <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
+# License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
+# Sources <http://github.com/atelierspierrot/atelierspierrot/common/editorconfig.txt>
+#
+########################################################################################
+#
+# To use this sample file, run:
+#   cp commons/editorconfig.txt ~/.editorconfig
+# or:
+#   cp commons/editorconfig.txt path/to/project/.editorconfig
+#
+# see <editorconfig.org>
 
 root = true
 
