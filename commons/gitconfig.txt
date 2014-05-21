@@ -9,13 +9,21 @@
 #
 ########################################################################################
 [user]
-	name = Piero Wbmstr
-	email = piwi@ateliers-pierrot.fr
+    name = Piero Wbmstr
+    email = piwi@ateliers-pierrot.fr
 [core]
-	excludesfile = / [ path/to/your/HOME ] /.gitignore_global
+    excludesfile = / [ path/to/your/HOME ] /.gitignore_global
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
+[color]
+    ui = true
 [alias]
-	k = log --graph --full-history --all --color     --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%cN <%cE>%Creset'
-	br = branch --color --list --verbose
+    co = checkout
+    ci = commit
+    st = status
+    br = branch --color --list --verbose
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    k = log --graph --full-history --all --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%cN <%cE>%Creset'

@@ -55,6 +55,6 @@ alias showpath='echo -e ${PATH//:/\\n}'
 
 # MacOSX special : 'wget' emulation
 if [ -z $(which wget) ]; then
-	alias wget='curl -C - -O '
+    alias wget='curl -C - -O '
 fi
 
