@@ -10,7 +10,7 @@
 ########################################################################################
 
 # gitk log
-# see <https://gist.github.com/pierowbmstr/10463831>
+# see <https://gist.github.com/piwi/10463831>
 git config --global alias.k "log --graph --full-history --all --color \
     --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%cN <%cE>%Creset'";
 

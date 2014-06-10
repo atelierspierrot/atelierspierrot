@@ -53,7 +53,7 @@ line of the message must be less than 80 characters (*it must be cut if necessar
     2013-03-29
 
       * test for commit message rules
-        Piero Wbmstr <piero.wbmstr@gmail.com> | 2013-03-29 23:39:08 +0100 | 262e522
+        Piero Wbmstr <me@e-piwi.fr> | 2013-03-29 23:39:08 +0100 | 262e522
           mqlskdjf jkqmsldfjqmlsdkjf jkMLkjqk sdjfmlqksdjfmlqksdjmflk JKMlkjqks
           djfmqlsdkfjmLKJmlkjqsdf
           
@@ -62,17 +62,17 @@ line of the message must be less than 80 characters (*it must be cut if necessar
           See bug: #2345   
 
       * Including a Profiler in the global template with page and system infos
-        PïeroWbmstr <piero.wbmstr@gmail.com> | 2013-03-29 11:01:25 +0100 | 55d0e02
+        PïeroWbmstr <me@e-piwi.fr> | 2013-03-29 11:01:25 +0100 | 55d0e02
         
 
       * wip ...
-        Piero Wbmstr <piero.wbmstr@gmail.com> | 2013-03-29 09:24:35 +0100 | 651630a
+        Piero Wbmstr <me@e-piwi.fr> | 2013-03-29 09:24:35 +0100 | 651630a
         
 
     2013-03-28
 
       * Oups, a forgotten template for search results
-        PïeroWbmstr <piero.wbmstr@gmail.com> | 2013-03-28 12:04:27 +0100 | 091dab7
+        PïeroWbmstr <me@e-piwi.fr> | 2013-03-28 12:04:27 +0100 | 091dab7
 
 
 
