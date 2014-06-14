@@ -10,7 +10,7 @@
 ########################################################################################
 [user]
     name = Piero Wbmstr
-    email = piwi@ateliers-pierrot.fr
+    email = me@e-piwi.fr
 [core]
     excludesfile = / [ path/to/your/HOME ] /.gitignore_global
 [filter "media"]
