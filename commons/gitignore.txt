@@ -9,10 +9,6 @@
 #
 ########################################################################################
 
-### Hack to allow keeping an empty directory
-!.gitkeep
-!*/.gitkeep
-
 ### OS & software files
 .DS_Store
 .AppleDouble
@@ -78,3 +74,8 @@ phpdoc/*
 dev/*
 build/*
 src.*/*
+
+
+### Hack to allow keeping an empty directory
+# this one HAS to keep last !!
+!.gitkeep
