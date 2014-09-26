@@ -9,7 +9,9 @@
 #
 ########################################################################################
 
-### OS & software files
+### see <http://github.com/piwi/dotfiles>
+
+# OS & temp files
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -22,12 +24,28 @@ Icon
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+*.swp
+*.swo
+*.vi
 
-# IDE files
-# to be commented to include them in a project
+# IDEs
+nbproject
+.cache
+.settings
 .project
 .buildpath
-.idea/*
+.idea
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+
+# VCS internals
+*.diff
+*.err
+*.orig
+*.log
+*.rej
 
 ### Les Ateliers specifics
 
