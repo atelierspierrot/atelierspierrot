@@ -3,17 +3,18 @@ Les Ateliers Pierrot
 
 This repository contains various documentations & information about our work as Markdown files.
 These contents are designed to be viewed in a web browser using our
-[DocBook package](http://github.com/atelierspierrot/docbook).
+[DocBook package](http://github.com/atelierspierrot/docbook). For a complete overview of our
+"rules", see <http://spip.ateliers-pierrot.fr/nos-activites/notre-philosophie/>.
 
-In all this respository documents, the key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
+In all this repository documents, the key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
 "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" are to be interpreted
 as described in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
 
-For more informations, here are some useful links of our web universe:
+For more information, here are some useful links of our web universe:
 
 -   <http://www.ateliers-pierrot.fr/>: our homepage,
 -   <http://github.com/atelierspierrot>: our [GitHub](http://www.github.com/) profile,
--   <https://packagist.org/packages/atelierspierrot/>: our [Packagist](https://packagist.org/) profile,
+-   <http://packagist.org/packages/atelierspierrot/>: our [Packagist](http://packagist.org/) profile,
 -   <http://trac.ateliers-pierrot.fr/>: our own sources tracker (using [InDefero](http://www.indefero.net/)),
 -   <http://projects.ateliers-pierrot.fr/>: some demonstrations of our projects,
 -   <http://www.ateliers-pierrot.fr/sites/>: some clones of our repositories,
@@ -21,7 +22,7 @@ For more informations, here are some useful links of our web universe:
 
 If you have a user access, here are our restricted websites:
 
--   <http://stats.ateliers-pierrot.fr/>: our frequentation tracker (using [Piwik](http://piwik.org/))
+-   <http://stats.ateliers-pierrot.fr/>: our frequenting tracker (using [Piwik](http://piwik.org/))
 
 
 ----
