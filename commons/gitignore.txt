@@ -9,7 +9,9 @@
 #
 ########################################################################################
 
-### OS & software files
+### see <http://github.com/piwi/dotfiles>
+
+# OS & temp files
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -37,6 +39,10 @@ nbproject
 *.sublime-workspace
 
 # Numerous always-ignore extensions
+*.sublime-project
+*.sublime-workspace
+
+# VCS internals
 *.diff
 *.err
 *.orig

@@ -149,8 +149,16 @@ function getLocalRepoInfos($path)
     }
     // last commit infos
     $commits = getCommitsHistory($path, '-1');
-    $repo->last_commit = $commits[0];
-
+    if (isset($commits[0])) {
+        $repo->last_commit = $commits[0];
+    } else {
+        $repo->last_commit = null;
+    }
+    // tags list
+    $tags = getGitTags($path);
+    if (!empty($tags)) {
+        $repo->tags = $tags;
+    }
     return $repo;
 /*
 var_export($repo);
@@ -223,28 +231,37 @@ exit('yo');
  */
     switch($action) {
         case 'read':
-            writeBold('Reading informations from concerned local repositories');
+            writeBold(
+                sprintf('Reading informations from concerned local repositories in "%s"', realpath($path))
+            );
             if (file_exists($path)) {
                 $data = array();
-                foreach(scandir($path) as $key=>$subdir) {
-                    if (!in_array($subdir, array('.', '..')) && is_dir($subdir) && (
+                $subdirs = scandir($path);
+                usort($subdirs, 'strcasecmp');
+                foreach($subdirs as $key=>$subdir) {
+                    $realpath = realpath(slashPath($path).$subdir);
+                    if (!in_array($subdir, array('.', '..')) && is_dir($realpath) &&
+                        isGitRepository($realpath) && (
                         empty($mask) || (
                             !empty($mask) && 0!=preg_match('/'.$mask.'/i', $subdir)
                     ))) {
-                        $data[$subdir] = getLocalRepoInfos(rtrim($path, '/').'/'.$subdir);
+                        $data[$subdir] = getLocalRepoInfos($realpath);
                     }
                 }
                 if (!empty($data) && count($data)) {
                     $list = array();
                     foreach($data as $key=>$repo) {
                         $list[] = '';
-                        $list[$repo->path] = 'clone from origin: '.$repo->origin;
+                        $list[str_replace(realpath($path), '', $repo->path)] = 'clone from origin: '.$repo->origin;
                         $list[] = 'on branch '.$repo->current_branch;
                         $list[] = 'last commit '.$repo->last_commit['commit-abbrev'].' by '
                             .$repo->last_commit['author_name']
                             .(!empty($repo->last_commit['author_email']) ? ' <'.$repo->last_commit['author_email'].'>': '')
                             .' at '.$repo->last_commit['date'];
                         $list[] = '"'.$repo->last_commit['title'].'"';
+                        if (!empty($repo->tags)) {
+                            $list[] = 'tags list: '.implode(' ', $repo->tags);
+                        }
                     }
                     writeList($list);
                 } else {
@@ -277,7 +294,7 @@ exit('yo');
             writeBold('Creating a clone for each matching repository');
             foreach($data as $key=>$repo) {
                 $cmd = sprintf('clone %s %s', $repo->clone_url, $repo->name);
-                $relpath = '.'!==$path ? $relpath : null;
+                $relpath = '.'!==$path ? realpath($path) : null;
                 write();
                 execGitCommand($cmd, $relpath);
             }
@@ -288,7 +305,7 @@ exit('yo');
             writeBold('Updating the clone of each matching repository');
             foreach($data as $key=>$repo) {
                 $cmd = 'pull';
-                $relpath = '.'!==$path ? rtrim($relpath, '/').'/'.$repo->name : $repo->name;
+                $relpath = '.'!==$path ? realpath(slashPath($path).$repo->name) : $repo->name;
                 if (file_exists($relpath)) {
                     write();
                     execGitCommand($cmd, $relpath);
@@ -299,9 +316,9 @@ exit('yo');
             break;
         case 'status':
             writeBold('Getting clone status of each matching repositories');
-            foreach($data as $key=>$repo) {
+            foreach ($data as $key=>$repo) {
                 $cmd = 'status';
-                $relpath = '.'!==$path ? rtrim($relpath, '/').'/'.$repo->name : $repo->name;
+                $relpath = '.'!==$path ? realpath(slashPath($path).$repo->name) : $repo->name;
                 if (file_exists($relpath)) {
                     write();
                     execGitCommand($cmd, $relpath);
@@ -316,7 +333,7 @@ exit('yo');
             foreach($data as $key=>$repo) {
                 if (file_exists(rtrim($path, '/').'/'.$repo->name)) {
                     $cmd = sprintf('rm -rf %s', $repo->name);
-                    $relpath = '.'!==$path ? $relpath : null;
+                    $relpath = '.'!==$path ? realpath($path) : null;
                     writePrompt(sprintf('  - delete directory "%s"', $repo->name), 'o/N');
                     $userval = getInput();
                     if (!empty($userval) && 'o'===$userval) {

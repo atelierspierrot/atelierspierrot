@@ -4,7 +4,7 @@ Les Ateliers Pierrot
 This repository contains various documentations & information about our work as Markdown files.
 These contents are designed to be viewed in a web browser using our
 [DocBook package](http://github.com/atelierspierrot/docbook). For a complete overview of our
-"rules", see <http://spip.ateliers-pierrot.fr/nos-activites/notre-philosophie/>.
+"rules" and some more information about our processes, see <http://spip.ateliers-pierrot.fr/nos-activites/notre-philosophie/>.
 
 In all this repository documents, the key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
 "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" are to be interpreted

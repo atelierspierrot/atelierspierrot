@@ -329,6 +329,21 @@ if (!function_exists('getGitCurrentBranch')) {
     }
 }
 
+if (!function_exists('getGitTags')) {
+    function getGitTags($path)
+    {
+        $refs = rtrim($path, '/').'/.git/refs/tags';
+        if (file_exists($refs) && count(scandir($refs))>2) {
+            $result = execGitCommand('tag', $path, true);
+            if (empty($result)) {
+                return array();
+            }
+            return explode("\n", $result);
+        }
+        return array();
+    }
+}
+
 if (!function_exists('getGitNearestTag')) {
     function getGitNearestTag($path)
     {
@@ -527,6 +542,13 @@ if (!function_exists('prependInFile')) {
         } else {
             return writeFile($filepath, $content);
         }
+    }
+}
+
+if (!function_exists('slashPath')) {
+    function slashPath($path)
+    {
+        return rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
     }
 }
 
