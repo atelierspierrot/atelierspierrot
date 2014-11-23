@@ -1,7 +1,7 @@
 Les Ateliers Pierrot
 =============
 
-This repository contains various documentations & informations about our work as Markdown files.
+This repository contains various documentations & information about our work as Markdown files.
 These contents are designed to be viewed in a web browser using our
 [DocBook package](http://github.com/atelierspierrot/docbook).
 
