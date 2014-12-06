@@ -96,9 +96,9 @@ The UNOFFICIAL sprites - Original icons work from www.gentleface.com
 
 ### The PiWi bash library
 
-An open source day-to-day bash library
+An open source day-to-day bash library (maintained by the captain)
 
-- sources: <http://github.com/atelierspierrot/piwi-bash-library>
+- sources: <http://github.com/piwi/bash-library>
 - manpage: <http://man.ateliers-pierrot.fr/piwi-bash-library/> (in progress)
 
 ### Development tools
