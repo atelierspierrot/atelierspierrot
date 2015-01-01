@@ -105,7 +105,9 @@ The UNOFFICIAL sprites - Original icons work from www.gentleface.com
 
 ## Shell stuff: the command-line tools
 
-### The PiWi bash library
+### DEPRECATED - The PiWi bash library
+
+**This package is deprecated and moved to <http://github.com/piwi/bash-library>.**
 
 An open source day-to-day bash library (maintained by the captain)
 
@@ -113,7 +115,9 @@ An open source day-to-day bash library (maintained by the captain)
 - manpage: <http://man.ateliers-pierrot.fr/piwi-bash-library/> (in progress)
 - packagist: <https://packagist.org/packages/atelierspierrot/piwi-bash-library>
 
-### Development tools
+### DEPRECATED - Development tools
+
+**This package is deprecated and moved to <http://github.com/piwi/dev-tools>.**
 
 Tools & facilities to manage app packages' development
 
@@ -272,7 +276,7 @@ To install all our packages in a `composer.json` configuration file, use:
 
 
 ----
-**Copyleft (c) 2008-2014 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.
+**Copyleft (ↄ) 2008-2015 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.
 
 Scripts are licensed under the [GNU General Public License version 3](http://www.gnu.org/licenses/gpl.html).
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * MODEL of PHP dev script
- * Copyleft (c) 2013 Pierre Cassat and contributors
+ * Copyleft (ↄ) 2013-2015 Pierre Cassat and contributors
  * <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
  * License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
  * Sources <https://github.com/atelierspierrot/atelierspierrot>
