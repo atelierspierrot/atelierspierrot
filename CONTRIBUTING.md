@@ -28,15 +28,16 @@ identify the error (and what caused it). A good bug report MUST follow these gui
     -   try to isolate the problem as much as possible
     -   what did you expect?
 
+The ticketing manager of a package is available at `http://github.com/patelierspierrot/<package-name>/issues`.
 
 ### Feature requests
 
 If you want to ask for a new feature, please follow these guidelines:
 
--   the goal of this project is to be (and keep) relevant for a large public ; maybe your request
-    is quite personal (you have a particular need) and can be discussed with me by email ; in this
+-   the goal of our projects is to be (and keep) relevant for a large public ; maybe your request
+    is quite personal (you have a particular need) and can be discussed with us by email ; in this
     case please do not make a feature request (!)
--   if you think something is missing or have an idea to increase one of the package's features, then
+-   if you think something is missing or have an idea to increase one of a packages' features, then
     you are ready for a "feature request" ; you can create an issue ticket beginning its name by
     "feature request: " ; please detail your request or your idea as much as possible, with a lot 
     of your experience.
@@ -63,8 +64,8 @@ direct `push` on the original repository).
 Once your work seems finished, you'll have to commit it and push it on your fork (you may 
 finally see your modifications on the sources view on GitHub). Then you'll have to make a 
 "pull-request" to the original repository, commenting it with a description of your correction or
-update, or anything you want me to know about ... Then, if your work seems ok for me 
-(and it certainly will :) and when I'll have the time (!), your work will finally be 
+update, or anything you want us to know about ... Then, if your work seems ok for us 
+(and it certainly will :) and when we'll have the time (!), your work will finally be 
 "merged" in the original repository and you will be able to (eventually) close your fork. 
 Note that the "merge" of a pull-request keeps your name and profile as the "commiter" 
 (the one who made the stuff).
@@ -89,12 +90,12 @@ Then you can create your own branch with the name of your feature:
     git checkout -b <my-branch>
 
 If the development process of the package requires some external dependencies to work, you
-must install it first.
+must install them first.
 
 If the root directory of the package contains a `composer.json` manifest file, some dependencies
 are loaded via [Composer](http://getcomposer.org/). To install them, run:
 
-    // install Composer if your don't have it
+    // install Composer if you don't have it in your system
     curl -sS https://getcomposer.org/installer | php
 
     // install PHP dependencies
@@ -121,7 +122,7 @@ You can *synchronize* your fork with current original repository by defining a r
 and pulling new commits:
 
     // create an "upstream" remote to the original repo
-    git remote add upstream http://github.com/atelierspierrot/<package-name>.git
+    git remote add upstream https://github.com/atelierspierrot/<package-name>.git
 
     // get last original remote commits
     git checkout dev
@@ -131,7 +132,7 @@ and pulling new commits:
 Coding rules
 ------------
 
--   use space (no tab) ; 1 tab = 4 spaces ; this is valid for all languages
+-   use spaces (no tab) ; 1 tab = 4 spaces ; this is valid for all languages
 -   comment your work (just enough)
 -   CSS files:
     -   try to align the opening brackets for reading comfort
