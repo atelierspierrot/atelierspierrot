@@ -119,3 +119,7 @@ and pulling new commits:
 ----
 
 If you have questions, you can (eventually) contact us at *contact [at] ateliers [dash] pierrot [dot] fr*.
+
+----
+
+**(ↄ) 2008-2015 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France.

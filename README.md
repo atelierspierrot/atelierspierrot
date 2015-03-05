@@ -1,5 +1,5 @@
 Les Ateliers Pierrot
-=============
+====================
 
 This repository contains various documentations & information about our work as Markdown files.
 
@@ -8,7 +8,7 @@ see <http://spip.ateliers-pierrot.fr/nos-activites/notre-philosophie/>.
 
 For more information, here are some useful links of our web universe:
 
--   <http://www.ateliers-pierrot.fr/>: our homepage,
+-   <http://www.ateliers-pierrot.fr/>: our homepage and <http://www.ateliers-pierrot.fr/>: our website,
 -   <http://packagist.org/packages/atelierspierrot/>: our [Packagist](http://packagist.org/) profile,
 -   <http://packagist.ateliers-pierrot.fr/>: our private packages manager (using [Satis](https://github.com/composer/satis)),
 -   <http://trac.ateliers-pierrot.fr/>: our own sources tracker (using [InDefero](http://www.indefero.net/)),
@@ -28,10 +28,10 @@ To follow us on the web:
 -   <http://twitter.com/AteliersPierrot>: our [Twitter](http://twitter.com/) profile
 
 
-Our Packages
-------------
+Packages review
+---------------
 
-This document shows the global architecture of our PHP packages.
+The list below shows the global architecture of our PHP packages.
 
 
 ### Pure PHP stuff: the basics
@@ -273,8 +273,5 @@ To install all our packages in a `composer.json` configuration file, use:
 
 
 ----
-**Copyleft (ↄ) 2008-2015 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France - Some rights reserved.
 
-Scripts are licensed under the [GNU General Public License version 3](http://www.gnu.org/licenses/gpl.html).
-
-Contents are licensed under the [Creative Commons - Attribution - Share Alike - Unported - version 3.0](http://creativecommons.org/licenses/by-sa/3.0/) license.
+**(ↄ) 2008-2015 [Les Ateliers Pierrot](http://www.ateliers-pierrot.fr/)** - Paris, France.
