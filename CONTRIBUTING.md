@@ -88,8 +88,11 @@ Then you can create your own branch with the name of your feature:
 
     git checkout -b <my-branch>
 
-The development process of the package requires some external dependencies to work, loaded via
-[Composer](http://getcomposer.org/). To install them, run:
+If the development process of the package requires some external dependencies to work, you
+must install it first.
+
+If the root directory of the package contains a `composer.json` manifest file, some dependencies
+are loaded via [Composer](http://getcomposer.org/). To install them, run:
 
     // install Composer if your don't have it
     curl -sS https://getcomposer.org/installer | php
@@ -97,7 +100,22 @@ The development process of the package requires some external dependencies to wo
     // install PHP dependencies
     php composer.phar install
 
-Your clone is ready ;)
+If the root directory of the package contains a `bower.json` manifest file, some dependencies
+are loaded via [Bower](http://bower.io/). To install them, you may first 
+[install Bower in your system](http://bower.io/#install-bower), and then run:
+
+    // install assets dependencies
+    bbower install
+
+If the root directory of the package contains a `.gitmodules` configuration file, some dependencies
+are managed as [GIT submodules](http://git-scm.com/book/en/Git-Tools-Submodules). To install them,
+run:
+
+    // install submodules
+    git submodule init
+    git submodule update
+
+Finally, your clone is ready ;)
 
 You can *synchronize* your fork with current original repository by defining a remote to it
 and pulling new commits:
@@ -110,10 +128,21 @@ and pulling new commits:
     git pull upstream dev
 
 
-### Coding rules
+Coding rules
+------------
 
 -   use space (no tab) ; 1 tab = 4 spaces ; this is valid for all languages
 -   comment your work (just enough)
+-   CSS files:
+    -   try to align the opening brackets for reading comfort
+-   JS scripts:
+    -   consider the `"use strict"` statement
+    -   always end your lines of code by a semicolon `;`
+-   PHP scripts:
+    -   in case of error, ALWAYS throw `Exception`s or `ErrorException`s (specific ones if available)
+        with a message
+-   Shell scripts:
+    -   any bash function must return a status (e.g. `return 0`)
 
 
 ----
