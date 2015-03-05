@@ -1,7 +1,11 @@
 Les Ateliers Pierrot
 ====================
 
-This repository contains various documentations & information about our work as Markdown files.
+This repository contains various documentations & information about our work.
+
+
+Web galaxy
+----------
 
 For a complete overview of our "rules" and some more information about our processes, 
 see <http://spip.ateliers-pierrot.fr/nos-activites/notre-philosophie/>.
