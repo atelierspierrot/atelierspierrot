@@ -1,53 +1,5 @@
-########################################################################################
-#
-# Common ".npmignore" of Les Ateliers Pierrot's packages
-#
-# Copyleft (ↄ) 2014-2015 Pierre Cassat and contributors
-# <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
-# License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
-# Sources <http://github.com/atelierspierrot/atelierspierrot/common/gitignore.txt>
-#
-########################################################################################
-
-### OS & software files
-.DS_Store
-.AppleDouble
-.LSOverride
-.Spotlight-V100
-.Trashes
-Icon
-._*
-*~
-*~lock*
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# IDE files
-# to be commented to include them in a project
-.cache
-.settings
-.project
-.buildpath
-.idea
-.tmproj
-*.esproj
-nbproject
-*.sublime-project
-*.sublime-workspace
-
-# Numerous always-ignore extensions
-*.diff
-*.err
-*.orig
-*.log
-*.rej
-*.swo
-*.swp
-*.zip
-*.vi
-
-### Les Ateliers specifics
+# .npmignore
+# Read about how to use .npmignore: https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package
 
 # the composer lock file
 node_modules
@@ -55,10 +7,8 @@ node_modules
 # any "tmp*" file or dir anywhere
 *tmp*
 
-### Les Ateliers branches
-
 # for developments ...
-# this may be commented on the "wip" branch
+# this may be commented on the "dev" branch
 dev/*
 build/*
 src.*/*
