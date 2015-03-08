@@ -1,0 +1,37 @@
+{
+    "name": "Les Ateliers Pierrot",
+    "id": "atelierspierrot",
+    "description": "Web development and creative workshops",
+    "homepage": "http://www.ateliers-pierrot.fr/",
+    "email": "contact@ateliers-pierrot.fr",
+    "keywords": [ "php", "unix", "open source", "free software" ],
+    "icons": {
+        "16": "media/bouton_plante-16.png",
+        "24": "media/bouton_plante-24.png",
+        "32": "media/bouton_plante-32.png",
+        "48": "media/bouton_plante-48.png",
+        "62": "media/bouton_plante-62.png",
+        "84": "media/bouton_plante-84.png",
+        "240": "media/bouton_plante-240.png"
+    },
+    "authors": [{
+        "name": "Pierre Cassat (@piwi)",
+        "role": "founder, developer, maintainer",
+        "homepage": "http://e-piwi.fr/"
+    }],
+    "socials": {
+        "facebook": "http://www.facebook.com/atelierspierrot",
+        "twitter": "http://twitter.com/AteliersPierrot",
+        "github": "http://github.com/atelierspierrot",
+        "packagist": "http://packagist.org/packages/atelierspierrot/",
+    },
+    "domains": [
+        "http://www.ateliers-pierrot.fr/",
+        "http://packagist.ateliers-pierrot.fr/",
+        "http://trac.ateliers-pierrot.fr/",
+        "http://projects.ateliers-pierrot.fr/",
+        "http://sites.ateliers-pierrot.fr/",
+        "http://docs.ateliers-pierrot.fr/",
+        "http://mans.ateliers-pierrot.fr/"
+    ]
+}
