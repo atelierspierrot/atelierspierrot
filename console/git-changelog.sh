@@ -1,8 +1,28 @@
 #!/usr/bin/env bash
 #
+# Copyleft (ↄ) 2008-2015 Pierre Cassat and contributors
+# <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# The source code of this package is available online at 
+# <http://github.com/atelierspierrot/atelierspierrot>.
+#
 # Usage:
 #
-# - with no argument, the whole changelog will be displayed
+# - with no argument, the help will be displayed
+# - with 'all', the whole changelog will be displayed
 # - with a TAG1..TAG2, the diff changelog only will be displayed
 #
 #       git-changelog.sh all
@@ -11,6 +31,7 @@
 #       git-changelog.sh ... > CHANGELOG
 #
 
+declare MESSAGE_IGNORE='#no-changelog'
 declare CHANGELOG_TITLE='# CHANGELOG for remote repository %s'
 declare HEAD_HEADER='* (upcoming release)'
 declare TAG_HEADER='* %(tag) (%(taggerdate:short) - %%s)'
@@ -47,20 +68,36 @@ tag_header () {
 # tag_history TAG1 TAG2
 tag_history () {
     if [ $# -eq 2 ]; then
-        git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" "${1}..${2}"
+        if [ -n "$MESSAGE_IGNORE" ]; then
+            git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" "${1}..${2}" | grep -v "$MESSAGE_IGNORE"
+        else
+            git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" "${1}..${2}"
+        fi
     elif [ $# -eq 1 ]; then
-        git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" "${1}"
+        if [ -n "$MESSAGE_IGNORE" ]; then
+            git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" "${1}" | grep -v "$MESSAGE_IGNORE"
+        else
+            git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" "${1}"
+        fi
     fi
 }
 
 # commit_history HASH
 commit_history () {
-    git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" -1 "${1}"
+    if [ -n "$MESSAGE_IGNORE" ]; then
+        git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" -1 "${1}" | grep -v "$MESSAGE_IGNORE"
+    else
+        git --no-pager log --oneline --first-parent --no-merges --decorate --pretty=tformat:"$COMMIT_LOG" -1 "${1}"
+    fi
 }
 
 # get_history
 get_history () {
-    git --no-pager log --oneline --all --decorate --pretty=tformat:"$COMMIT_LOG"
+    if [ -n "$MESSAGE_IGNORE" ]; then
+        git --no-pager log --oneline --all --decorate --pretty=tformat:"$COMMIT_LOG" | grep -v "$MESSAGE_IGNORE"
+    else
+        git --no-pager log --oneline --all --decorate --pretty=tformat:"$COMMIT_LOG"
+    fi
 }
 
 # get_changelog TAG1 TAG2
