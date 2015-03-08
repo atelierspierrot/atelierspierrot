@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!--
+
+Les Ateliers Pierrot (www.ateliers-pierrot.fr)
+Under Creative Commons BY-SA 3.0 license (https://creativecommons.org/licenses/by-sa/3.0/legalcode)
+
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="20" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <linearGradient id="a" x2="0" y2="100%">
+        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+        <stop offset="1" stop-opacity=".1"/>
+    </linearGradient>
+    <rect rx="3" width="90" height="20" fill="#555"/>
+    <rect rx="3" x="20" width="70" height="20" fill="#4c1"/>
+    <path fill="#4c1" d="M20 0h4v20h-4z"/>
+    <rect rx="3" width="90" height="20" fill="url(#a)"/>
+    <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="9">
+        <text x="53.5" y="14.5" fill="#010101" fill-opacity=".3">atelierspierrot</text>
+        <text x="53.5" y="13.5">atelierspierrot</text>
+    </g>
+    <image x="3" y="2" width="16" height="16" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIE1hY2ludG9zaCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQTYzRjM2NUU0QTIxMUUyOUM4NTkwODA0MjA1RkI0MyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQTYzRjM2NkU0QTIxMUUyOUM4NTkwODA0MjA1RkI0MyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNBNjNGMzYzRTRBMjExRTI5Qzg1OTA4MDQyMDVGQjQzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNBNjNGMzY0RTRBMjExRTI5Qzg1OTA4MDQyMDVGQjQzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+4HuYXQAAA3xJREFUeNpcU1tonEUUPjP/zOzO7p+9JbsbN4mbNJp0NUoXGylJKRVrQpu++OIFKS4UqlAQ+2AFHwRvoA+KQUoJrRIxifig6ItgbVErXjBbWi+Jabu7Maxt3XSDm+zlv8+4/0Zq8MA8zBy+73znnG9QMBTcMbB9MEMpoQhjCbdCAlW8ErEGtQwQ0lEEoH8zQiLHcWTuam6ODKYGM+MH9x/p6+/TOecgpQSXhXt8MnfjEl8oneHjQ0+tI+ERUjY5EALDMGBleYWf++Ksn1DG6LY7+vX0zrTu8/taBIx64Y/iEpubOcEPjE8YoyMPNnSz0aruEui6DpRS+Par85Q075J5KA6FwkCY4ipHlBA49eHbwUp1DfYNP9zgPg6YuGgAjDAoigKtNwULXK2ve6am3wr8unDJ48qmhMml/C/su+x5krozJXvat1umZaBWa/87buDK32vs5loJPf/q0cg382dUlasim51n1fUN2Du8XwsH4rYQjrwFhP/AbhApHRkPdcPy6hU4Mfd6IBwLQenaKvZ5Gey69yGdMQYIq9KyLHCk02x4y6JcgkQiqRFJYc/wmPnj4jn2ydczgVBbp56++37n9viA9emXM2qp9Be+b2iX2dERdSLhqKP6VcGoZ5MgGGi3wjEiFdtUHtg5ZoUEVQ5O7BHRWF2enH0hcnX1Z7q4eAVOzfqAOhyi7beJoVTa7OseEIQoSEn29h7YvXfkHimrOPPkMxtG9QZhOGDXTFNMf3zS+8TYsfrjj2Q0RdVwuFOV1C+gXC4py8uXmVYxLhPLNlEisc2SooaSyQHzjcnjpKe/gI4eeqny0Wfv+07PTvrfe/Pz8ouHP6jXGhW8aSRTXsxe4FPvTBnYnahfbRMKITKfW2CGrSGlzUaxaI99LPPaer2+AcdfPhwp3SwSRaHNFSApRNMsaNP2eNNdWHYlknZ59Trxs7D02zHHtHXYPTrReO7pV2q//X4RvzszGXTd1zSTK2LLGoVAtVoNxTu77OvFPOuKd9sBb4ej6wZoWh2N73usqvKgc3p6MvD9D2d5eseopms6GM28iyWOI2Qhl+cIeo1iseDvjCZNinw4+9M8t22z5d+A2u0cevTZ2rWVP5m0LshGvQ6FfIE3vYFQR7RjJDV01xEv54pplrnXG9ERIqL5Xbf+bGjOyFUPtmO1KluWjZYWl6b/EWAAFQyuc8OcaCkAAAAASUVORK5CYII=" />
+</svg>
