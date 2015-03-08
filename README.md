@@ -10,6 +10,8 @@ Web galaxy
 For a complete overview of our "rules" and some more information about our processes, 
 see <http://spip.ateliers-pierrot.fr/nos-activites/notre-philosophie/>.
 
+Our public GPG key is available at: <http://keys.ateliers-pierrot.fr/ateliers-pierrot.asc>.
+
 For more information, here are some useful links of our web universe:
 
 -   <http://www.ateliers-pierrot.fr/>: our homepage and <http://www.ateliers-pierrot.fr/>: our website,
@@ -37,6 +39,8 @@ Packages review
 
 The list below shows the global architecture of our PHP packages.
 
+**We try to always sign our tag releases with [our GPG key](http://keys.ateliers-pierrot.fr/ateliers-pierrot.asc) 
+to let you validate its authenticity.**
 
 ### Pure PHP stuff: the basics
 
