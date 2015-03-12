@@ -24,18 +24,42 @@ Knowing that, all our classes are named and organized in an architecture to allo
 of this loader to be able to use the internal `class_exists()` function with its natural behavior.
 You can find this fork at <http://gist.github.com/piwi/0e7f1560365162134725>.
 
-Installation
+Architecture
 ------------
 
 Our packages are (mostly) constructed in a matter of *granularity*: each one is a piece of
 a global construction which is the result of the aggregation of many packages. But each package
 MUST be usable "as is" as long as its own dependencies are embedded.
 
+We follow a common package architecture to keep compliant with PHP packages' best practices:
+
+-   the PHP sources are stored in a `src/PackageNamespace/` directory,
+-   any binary is stored in a `bin/` directory,
+-   the tests classes are stored in a `tests/` directory,
+-   the documentation is stored in a `phpdoc/` directory.
+
+A classic package SHOULD be constructed like:
+
+    PACKAGE_ROOT/
+    |------------- bin/                     // binaries
+    |------------- demo/                    // a demonstation - optional
+    |------------- phpdoc/                  // the documentation - optional
+    |------------- src/PackageNamespace/    // PHP sources
+    |------------- tests/                   // test classes
+
 To construct such packages, we ALWAYS use [Composer](http://getcomposer.org/) as a distributor
 and dependencies installer and auto-loader. Each package MAY contain a `composer.json`
 manifest file at its root directory to define its name and dependencies constraints. If such
 file is present, reading it MUST be sufficient to let you know what it does and on which other 
 packages it depends.
+
+We mostly let *Composer* install dependencies and binaries following its default architecture:
+
+-   sources MAY be installed in a `vendor/atelierspierrot/PACKAGE/` directory
+-   binaries MAY be installed in the `vendor/bin/` directory.
+
+Installation
+------------
 
 You can *use* a package in your work in many ways, but the *best practice* is ALWAYS to
 install it via *Composer* directly.
@@ -47,7 +71,7 @@ install it via *Composer* directly.
 First, you can clone the [GitHub](https://github.com/atelierspierrot) repository and include 
 it "as is" in your poject:
 
-    $ git clone https://github.com/atelierspierrot/PACKAGE.git /path/of/your/project
+    $ git clone https://github.com/atelierspierrot/PACKAGE.git /path/of/your/project/deps
 
 In this case, you will have to do the same for all its dependencies.
 
@@ -78,9 +102,20 @@ any other custom autoloader:
 
 ```php
 require_once '.../src/SplClassLoader.php';
-$patternsLoader = new SplClassLoader('PACKAGE', '/path/to/package/src');
+$patternsLoader = new SplClassLoader('PackageNamespace', '/path/to/package/src');
 $patternsLoader->register();
 // ... same process for dependencies
+```
+
+You can find the `PACKAGE_NAMESPACE` name in the *autoload* entry of the `composer.json` 
+manifest:
+
+```json
+"autoload": { 
+    "psr-0": {
+        "PackageNamespace": "src"
+    }
+}
 ```
 
 ### Using *Composer*
@@ -145,6 +180,10 @@ To launch the tests, just run:
 
     $ ./vendor/bin/phpunit
 
+If the package also embeds a `.travis.yml` dotfile, the tests are automated each time new
+commits are pushed to the GitHub repository using the [Travis-CI](http://travis-ci.org/)
+online tool. In this case, a button should be present in the header of the `README.md` file 
+of the package that links to its tests page.
 
 ----
 
