@@ -32,10 +32,10 @@ a global construction which is the result of the aggregation of many packages. B
 MUST be usable "as is" as long as its own dependencies are embedded.
 
 To construct such packages, we ALWAYS use [Composer](http://getcomposer.org/) as a distributor
-and dependencies installer and auto-loader. Each package MAY contains a `composer.json`
-manifest file at its root directory to define its name and dependencies constraints. It such
-a file is present, reading it MUST be sufficient to let you know what it does and on which
-other packages it depends.
+and dependencies installer and auto-loader. Each package MAY contain a `composer.json`
+manifest file at its root directory to define its name and dependencies constraints. If such
+file is present, reading it MUST be sufficient to let you know what it does and on which other 
+packages it depends.
 
 You can *use* a package in your work in many ways, but the *best practice* is ALWAYS to
 install it via *Composer* directly.
@@ -103,7 +103,7 @@ process (with its dependencies) and its namespace will be automatically added to
 autoloader.
 
 The best practice is to use a **release** of the package rather than a clone as it is light-weight
-and cachable by Composer. You can use a version constraint like `X.Y.Z` to choose a single
+and cachable by *Composer*. You can use a version constraint like `X.Y.Z` to choose a single
 version release, or a notation like `X.*` to use the latest release of the `X` major version.
 
 Development
@@ -114,13 +114,13 @@ Our packages often embeds some configuration files to use development helper too
 [PHP Mess Detector](http://phpmd.org/), a code analyzer and [PHP Unit](https://phpunit.de/),
 a unit-tests manager.
 
-To install these dependencies, you will need to use the `--dev` option of Composer:
+To install these dependencies, you will need to use the `--dev` option of *Composer*:
 
     $ composer install --dev
 
 ### Using *Sami*
 
-If the package embeds a `sami.config.php` file, it is ready to use Sami. The documentation
+If the package embeds a `sami.config.php` file, it is ready to use *Sami*. The documentation
 will often be generated in a `phpdoc/` directory at the root of the package.
 
 To (re)generate this documentation, run:
