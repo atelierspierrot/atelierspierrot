@@ -1,7 +1,7 @@
 # .npmignore
 # Read about how to use .npmignore: https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package
 
-# the composer lock file
+# the node dependencies
 node_modules
 
 # any "tmp*" file or dir anywhere
