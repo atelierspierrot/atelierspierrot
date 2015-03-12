@@ -1,6 +1,8 @@
 Les Ateliers Pierrot
 ====================
 
+[![ateliers-pierrot.fr](http://img.ateliers-pierrot-static.fr/atelierspierrot-microbutton.svg)](http://www.ateliers-pierrot.fr/)
+
 This repository contains various documentations & information about our work.
 
 
