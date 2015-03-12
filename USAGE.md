@@ -5,7 +5,7 @@ Usage of our PHP packages
 [![documentations](http://img.ateliers-pierrot-static.fr/read-the-doc.svg)](http://docs.ateliers-pierrot.fr/)
 [![manuals](http://img.ateliers-pierrot-static.fr/read-the-man.svg)](http://mans.ateliers-pierrot.fr/)
 
-This domcument explains how to install and use our packages in your work.
+This document explains how to install and use our packages in your work.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", 
 "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described 
@@ -55,7 +55,7 @@ packages it depends.
 
 We mostly let *Composer* install dependencies and binaries following its default architecture:
 
--   sources MAY be installed in a `vendor/atelierspierrot/PACKAGE/` directory
+-   sources MAY be installed in a `vendor/VENDOR/PACKAGE/` directory
 -   binaries MAY be installed in the `vendor/bin/` directory.
 
 Installation
@@ -84,7 +84,7 @@ During the life-cycle of your project, to update the package, run:
 
 You can also download an archive of a release from the repository (see the "releases" tab):
 
-    $ wget --no-check-certificate -O PACKAGE-vX.Y.Z.tar.gz https://github.com/atelierspierrot/XXX/archive/vX.Y.Z.tar.gz
+    $ wget --no-check-certificate -O PACKAGE-vX.Y.Z.tar.gz https://github.com/atelierspierrot/PACKAGE/archive/vX.Y.Z.tar.gz
     $ tar -xvf PACKAGE-vX.Y.Z.tar.gz
 
 Our releases' tags are often signed with [our GPG key](http://keys.ateliers-pierrot.fr/).
@@ -102,12 +102,12 @@ any other custom autoloader:
 
 ```php
 require_once '.../src/SplClassLoader.php';
-$patternsLoader = new SplClassLoader('PackageNamespace', '/path/to/package/src');
-$patternsLoader->register();
+$loader = new SplClassLoader('PackageNamespace', '/path/to/package/src');
+$loader->register();
 // ... same process for dependencies
 ```
 
-You can find the `PACKAGE_NAMESPACE` name in the *autoload* entry of the `composer.json` 
+You can find the `PackageNamespace` name in the *autoload* entry of the `composer.json` 
 manifest:
 
 ```json
@@ -120,12 +120,13 @@ manifest:
 
 ### Using *Composer*
 
-If you are a *Composer* user, just add the package to your requirements in your `composer.json`:
+If you are a *Composer* user, just add the package to the requirements of your project's 
+`composer.json` manifest file:
 
 ```json
 "require": {
     "your-dependencies": "*",
-    "atelierspierrot/XXX": "version constraint ..."
+    "atelierspierrot/PACKAGE": "version constraint ..."
 }
 ```
 
@@ -138,8 +139,12 @@ process (with its dependencies) and its namespace will be automatically added to
 autoloader.
 
 The best practice is to use a **release** of the package rather than a clone as it is light-weight
-and cachable by *Composer*. You can use a version constraint like `X.Y.Z` to choose a single
-version release, or a notation like `X.*` to use the latest release of the `X` major version.
+and cachable by *Composer*. You can use a [version constraint](http://getcomposer.org/doc/01-basic-usage.md#package-versions) 
+like `X.Y.Z` to choose a single version release, or a notation like `X.*` to use the latest 
+release of the `X` major version.
+
+If you need the latest sources updates, you can use the `dev-master` (for the "master" branch)
+or `dev-dev` (for the "dev" branch) version constraint.
 
 Development
 -----------
