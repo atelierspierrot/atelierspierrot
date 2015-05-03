@@ -1,0 +1,15 @@
+{
+    "name": "atelierspierrot/global_dev_autoloader",
+    "description": "A global autoloader for dev environment.",
+    "dependencies": {
+        "epiceditor": "~0.2.3",
+        "mde-editor": "*",
+        "jquery": "1.11.*",
+        "bootstrap": "~3.3.1",
+        "html5shiv": "~3.7.2",
+        "fontawesome": "~4.2.0",
+        "jquery.tablesorter": "~2.18.4",
+        "jquery.highlight": "*",
+        "MathJax": "~2.4.0"
+    }
+}

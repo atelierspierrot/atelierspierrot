@@ -1,0 +1,110 @@
+{
+    "name": "atelierspierrot/global_dev_autoloader",
+    "type": "library",
+    "description": "A global autoloader for dev environment.",
+    "license": "private",
+    "authors": [{
+        "name": "Les Ateliers Pierrot",
+        "email": "contact@ateliers-pierrot.fr",
+        "homepage": "http://www.ateliers-pierrot.fr/"
+    }],
+    "require": {
+        "php": ">=5.4.0",
+        "lib-curl": "*",
+        "lib-iconv": "*",
+        "lib-openssl": "*",
+        "lib-pcre": "*",
+        "ext-curl": "*",
+        "ext-date": "*",
+        "ext-exif": "*",
+        "ext-gd": "*",
+        "ext-gettext": "*",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-mcrypt": "*",
+        "ext-mysql": "*",
+        "ext-mysqli": "*",
+        "ext-openssl": "*",
+        "ext-pcre": "*",
+        "ext-Phar": "*",
+        "ext-posix": "*",
+        "ext-soap": "*",
+        "ext-SPL": "*",
+        "ext-sqlite3": "*",
+        "ext-xml": "*",
+        "ext-xmlrpc": "*",
+        "piwi/composer-symlinker": "dev-master"
+    },
+    "require-dev": {
+        "piwi/php-quick-lib": "dev-master",
+        "piwi/html5-quick-template": "dev-master",
+        "piwi/markdown-extended": "dev-master",
+        "piwi/mde-service": "dev-master",
+        "atelierspierrot/assets-library": "dev-master",
+        "atelierspierrot/assets-manager": "dev-master",
+        "atelierspierrot/cryptography": "dev-master",
+        "atelierspierrot/devdebug": "dev-master",
+        "atelierspierrot/event-manager": "dev-master",
+        "atelierspierrot/http-fundamental": "dev-master",
+        "atelierspierrot/internationalization": "dev-master",
+        "atelierspierrot/library": "dev-master",
+        "atelierspierrot/maths": "dev-master",
+        "atelierspierrot/mime-mailer": "dev-master",
+        "atelierspierrot/patterns": "~1.0",
+        "atelierspierrot/reflectors": "dev-master",
+        "atelierspierrot/service-container": "dev-master",
+        "atelierspierrot/templatengine": "dev-master",
+        "atelierspierrot/validators": "dev-master",
+        "atelierspierrot/web-syndication-analyzer": "dev-master",
+        "atelierspierrot/webfilesystem": "dev-master",
+        "atelierspierrot/webservices": "dev-master",
+        "psr/log": "1.0.*",
+        "twig/twig": "@stable",
+        "sami/sami": "@stable",
+        "phpunit/phpunit": "@stable",
+        "phpmd/phpmd" : "@stable",
+        "composer/composer": "1.*",
+		"phing/phing": "@stable",
+		"pdepend/pdepend": "@stable",
+		"squizlabs/php_codesniffer": "@stable",
+        "fabpot/php-cs-fixer": "@stable"
+    },
+    "minimum-stability": "dev",
+	"repositories": [
+		{ "type": "pear", "url": "http://pear.php.net" }
+	],
+    "config": {
+		"use-include-path": true,
+		"store-auths": true,
+		"autoloader-suffix": "LesAteliersPierrotDevel",
+		"optimize-autoloader": true,
+		"discard-changes": "stash",
+        "vendor-dir": "vendor",
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "assets-dir": "vendor_www",
+        "assets-vendor-dir": "assets-manager",
+        "document-root": ".",
+        "local-dirs": "/Users/piwi/Sites/projects/",
+        "local-packages": {},
+        "local-vendors": [ "atelierspierrot", "piwi", "wdbo", "markdown-extended", "php-carteblanche" ]
+    },
+    "scripts": { 
+        "cs-fixer": [
+            "php ./bin/php-cs-fixer fix . --level=psr2 --verbose"
+        ],
+        "post-autoload-dump": [
+            "Assets\\Composer\\TemplateEngineInstaller::postAutoloadDump"
+        ],
+        "post-install-cmd": [
+            "bower install"
+        ],
+        "post-update-cmd": [
+            "bower install"
+        ]
+    }
+}
