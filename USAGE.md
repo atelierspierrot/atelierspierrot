@@ -11,6 +11,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described 
 in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
 
+
 First notes about standards
 ---------------------------
 
@@ -23,6 +24,7 @@ Knowing that, all our classes are named and organized in an architecture to allo
 [standard SplClassLoader](https://gist.github.com/jwage/221634). We have made an improved version
 of this loader to be able to use the internal `class_exists()` function with its natural behavior.
 You can find this fork at <http://gist.github.com/piwi/0e7f1560365162134725>.
+
 
 Architecture
 ------------
@@ -57,6 +59,7 @@ We mostly let *Composer* install dependencies and binaries following its default
 
 -   sources MAY be installed in a `vendor/VENDOR/PACKAGE/` directory
 -   binaries MAY be installed in the `vendor/bin/` directory.
+
 
 Installation
 ------------
@@ -139,12 +142,17 @@ process (with its dependencies) and its namespace will be automatically added to
 autoloader.
 
 The best practice is to use a **release** of the package rather than a clone as it is light-weight
-and cachable by *Composer*. You can use a [version constraint](http://getcomposer.org/doc/01-basic-usage.md#package-versions) 
+and cacheable by *Composer*. You can use a [version constraint](http://getcomposer.org/doc/01-basic-usage.md#package-versions) 
 like `X.Y.Z` to choose a single version release, or a notation like `X.*` to use the latest 
 release of the `X` major version.
 
-If you need the latest sources updates, you can use the `dev-master` (for the "master" branch)
-or `dev-dev` (for the "dev" branch) version constraint.
+If you don't mind about concerned major version, you can use the `@stable` shortcut to always
+use the latest stable release.
+
+If you need (or prefer) to use a clone of the package to get latest sources updates, 
+you can still use the `dev-master` (for the "master" branch) or `dev-dev` (for the "dev" branch) 
+version constraint.
+
 
 Development
 -----------
@@ -189,6 +197,35 @@ If the package also embeds a `.travis.yml` dotfile, the tests are automated each
 commits are pushed to the GitHub repository using the [Travis-CI](http://travis-ci.org/)
 online tool. In this case, a button should be present in the header of the `README.md` file 
 of the package that links to its tests page.
+
+### Using *PHP Mess Detector*
+
+The `phpmd` tool can analyze and point the mistakes of a PHP code, its naming or design.
+To test a package, run: 
+
+    $ ./vendor/bin/phpmd src/PackageNamespace/ text cleancode,codesize,controversial,design,naming,unusedcode
+
+You can choose the test types to run by deleting one or more type(s) from last argument.
+
+
+Development Environment
+-----------------------
+
+Our classic development environment allows usage of a global `autoload` linked to each
+package's clone in a directory. 
+
+    DEV_PACKAGES_ROOT/              // a child of server's DOCUMENT_ROOT
+    |------- PACKAGE1/
+    |------- PACAKGE2/
+    |------- ...
+    |------- bower.json             // the dev env Bower dependencies
+    |------- composer.json          // the dev env Composer dependencies
+    |------- ...
+    |------- bin/                   // composer's installed binaries
+    |------- vendor/                // composer's installed packages
+    |------- tmp/                   // a 775 directory for all temporary needs
+
+This ways, you can fallback to a global autoloader in `DEV_PACKAGES_ROOT/vendor/autoload.php`.
 
 ----
 
